@@ -1,0 +1,67 @@
+<ion-navbar *navbar>
+    <ion-toolbar indigo> 
+          <ion-title>
+              <div class="toolbar-title">
+                  Contact Details
+              </div>
+          </ion-title>
+          
+            <ion-buttons start>
+                <button (click)="dismiss()">
+                <ion-icon name='close' ></ion-icon>
+                </button>
+            </ion-buttons>
+    </ion-toolbar>
+</ion-navbar>
+
+<ion-content padding style="background:#eee" class="contact-form">
+    <form #f="ngForm">
+        <ion-card light>
+            <ion-card-header indigo>
+                New Contact
+            </ion-card-header>
+            <ion-card-content>
+                <ion-list no-lines>
+                    <ion-item>
+                        <ion-label floating>Name</ion-label>
+                        <ion-input [(ngModel)]="contact.name" type="text"></ion-input>
+                    </ion-item>
+                    <ion-item>
+                        <ion-label floating>Mobile</ion-label>
+                        <ion-input [(ngModel)]="contact.mobile" type="number"></ion-input>
+                    </ion-item>
+                    <ion-item>
+                        <ion-label floating>Description</ion-label>
+                        <ion-input [(ngModel)]="contact.description" type="text"></ion-input>
+                    </ion-item>
+                    <ion-item>
+                        <br/>
+                        <h4>Choose Icon</h4>
+                        <ion-row>
+                            <ion-col *ngFor="#icon of [0,1,2,3,4,5]; #i=index" class="col-md-2">
+                                <ion-avatar (click)="selectIcon(icons[icon])">
+                                        <img src="img/{{icons[icon]}}" />
+                                </ion-avatar>
+                                <div style="margin:4px 0 0 10px" *ngIf="icons[icon] == contact.thumb">
+                                    <ion-icon green name="checkmark-circle"></ion-icon>    
+                                </div>
+                            </ion-col>                            
+                        </ion-row>
+                        <ion-row>
+                            <ion-col *ngFor="#icon of [6,7,8,9,10,11]; #i=index" class="col-md-2">
+                                <ion-avatar (click)="selectIcon(icons[icon])">
+                                        <img src="img/{{icons[icon]}}" />
+                                </ion-avatar>
+                                <div style="margin:4px 0 0 10px" *ngIf="icons[icon] == contact.thumb">
+                                    <ion-icon green name="checkmark-circle"></ion-icon>    
+                                </div>
+                            </ion-col>                            
+                        </ion-row>
+                    </ion-item>
+                    <button indigo (click)="save()">Save</button>
+                    <button light (click)="dismiss()">Cancel</button>
+                </ion-list>
+            </ion-card-content>
+        </ion-card>
+    </form>
+</ion-content>

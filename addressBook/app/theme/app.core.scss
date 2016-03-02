@@ -1,0 +1,107 @@
+// http://ionicframework.com/docs/v2/theming/
+
+
+// App Shared Imports
+// --------------------------------------------------
+// These are the imports which make up the design of this app.
+// By default each design mode includes these shared imports.
+// App Shared Sass variables belong in app.variables.scss.
+
+@import "../pages/page1/page1";
+
+@import "../pages/page2/page2";
+
+@import "../pages/page3/page3";
+
+@import "mixins";
+
+
+.toolbar {
+    padding:0;
+    @include box-shadow(0,4px,6px,rgba(0,0,0,0.4));
+}
+button {
+    cursor: pointer;
+}
+
+.navbar-add-icon {
+    position: absolute;
+    bottom: 2%;
+    right: 6%;
+    font-size: 20px;
+    font-weight: bolder;
+    cursor: pointer;
+    color: #fff;
+    height: 55px;
+    width: 55px;
+    z-index: 9999999;
+    background: #00BCD4;
+    padding: 18px 0 0 22px;
+    @include box-shadow(0,6px,9px,rgba(0,0,0,0.4));
+    @include border-radius(100%);
+    
+    @each $color,$value in $colors {
+        &.#{$color} {
+            background: $value;
+        }    
+    } 
+    
+}
+
+ion-item-sliding {
+    margin-top: 10px;
+    cursor:pointer;
+}
+
+@media(min-width:768px){
+    ion-item-sliding {
+        width: 47%;
+        display: inline-block;
+        margin-right: 3%;
+    }
+}
+ion-item-sliding.shadow {
+    box-shadow: 3px 3px 7px rgba(0,0,0,0.4);
+}
+
+ion-list .item-inner {
+    border-bottom: 1px solid #fff;
+}
+
+.large {
+    .checkbox-icon {
+        height: 30px;
+        width: 30px;
+        border-color: #212121;
+        
+        .checkbox-inner {
+            height:20px;
+            width:10px;
+            border-width:5px;
+            left:8px;
+        } 
+    }
+}
+
+.hidden {
+    display: none !important;
+}
+
+@each $dir, $pref in (top:t,left:l,right:r,bottom:b){
+    @each $val in (5,10,20,25){
+        [m-#{$pref}-#{$val}] {
+            margin-#{$dir}: #{$val}px;
+        }     
+        [p-#{$pref}-#{$val}] {
+            padding-#{$dir}: #{$val}px;
+        }       
+    }
+}
+
+
+.item-left {
+    @extend [item-left];
+}
+.item-right {
+    @extend [item-right];
+}

@@ -1,0 +1,54 @@
+$card-color:#BDBDBD;
+
+.page2 {
+    background-color: #eee;
+    
+    .favourite-card {
+        width:28%;
+        display:inline-block;
+        position: relative;
+        border-top:3px solid $card-color;
+        cursor: pointer;
+    
+        &:hover {
+            transform: scale(1.05);
+        }
+        
+        img {
+            margin: auto;
+            max-width: 10rem;
+            max-height: 10rem;    
+            
+        }
+     
+        .inner {
+            background: $card-color;
+            padding-top: 10px;
+            
+            h2 {
+                font-weight: bold;
+            }
+        }
+        
+        .fav-icon {
+            position: absolute;    
+            top:calc(100% - 88px);
+            right: 0;
+            font-size: 20px;
+        }
+    }
+    
+}
+
+
+@media(max-width:500px){
+    .page2 .favourite-card {
+        width:44%;
+    }
+}
+
+@media(max-width:320px){
+    .page2 .favourite-card {
+        width:92%;
+    }
+}

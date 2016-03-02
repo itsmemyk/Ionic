@@ -1,0 +1,36 @@
+
+<ion-navbar sky hideBackButton *navbar>
+  <ion-title>
+    Groups
+  </ion-title>
+</ion-navbar>
+
+<ion-content padding class="page3">
+    <ion-searchbar #keyword (input)="filterGroup(keyword.value)"></ion-searchbar>
+    <ion-list no-lines class="group-list">
+        <ion-item-sliding *ngFor="#group of groups" (dblclick)="addGroupMember(group,true)"> 
+            <ion-item>
+                <h2>
+                    <ion-icon name="people" item-left></ion-icon>
+                    {{group.name}}
+                    <ion-badge *ngIf="group.Total > 0" style="float:right" item-right>{{group.Total}}</ion-badge>
+                </h2>                
+            </ion-item>
+            <ion-item-options>
+                <button sky class="sliding-item-btn" (click)="addGroupMember(group)">
+                    <ion-icon name="person-add"></ion-icon>
+                    Add
+                </button>
+                <button favourite class="sliding-item-btn" (click)="editGroup(group)">
+                    <ion-icon name="create"></ion-icon>
+                    Edit
+                </button>
+                <button danger class="sliding-item-btn" (click)="removeGroup(group.id)">
+                    <ion-icon name="close"></ion-icon>
+                    Remove
+                </button>
+            </ion-item-options>
+        </ion-item-sliding>
+    </ion-list>
+</ion-content>
+<ion-icon   class="navbar-add-icon" name="add" (click)="addNewGroup()"></ion-icon>

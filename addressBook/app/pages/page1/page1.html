@@ -1,0 +1,42 @@
+<ion-navbar *navbar >
+  <ion-toolbar sky>
+      <ion-title>
+        <div class="toolbar-title">
+            Contact  List           
+        </div>        
+     </ion-title>
+  </ion-toolbar>
+</ion-navbar>
+
+<ion-content padding class="page1">
+    
+  <ion-searchbar #keyword (input)="filterContact(keyword.value)"></ion-searchbar>
+  <ion-list>
+      <ion-item-sliding *ngFor="#contact of contacts" class="shadow">
+        <ion-item (click)="viewContact(contact)" title="Created on {{ contact.createdOn }}">
+            <ion-thumbnail item-left>
+                <img src="img/{{contact.thumb}}" />
+            </ion-thumbnail>
+            
+            <h2>+91 {{contact.mobile}}</h2>
+            <p>{{contact.name}} ( {{contact.description}} )</p>
+            
+            <button title="Favourite" class="star-icon" clear item-right (click)="toggleFavourite(contact.id,contact.is_fav)">
+                  <ion-icon  sky name="{{contact.is_fav == 0 ? 'star-outline' : 'star'}}"></ion-icon>
+            </button>
+        </ion-item>
+        <ion-item-options>
+               
+                <button favourite class="sliding-item-btn" (click)="editContact(contact)">
+                    <ion-icon name="create"></ion-icon>
+                    Edit
+                </button>
+                <button danger class="sliding-item-btn" (click)="removeContact(contact.id)">
+                    <ion-icon name="close"></ion-icon>
+                    Remove
+                </button>
+            </ion-item-options>
+      </ion-item-sliding>
+  </ion-list>  
+</ion-content>
+<ion-icon   class="navbar-add-icon" name="add" (click)="addNewContact()"></ion-icon>

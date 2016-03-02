@@ -1,0 +1,41 @@
+<ion-navbar *navbar>
+    <ion-toolbar primary> 
+          <ion-title>
+              <div class="toolbar-title">
+                  Contact Details
+              </div>
+          </ion-title>
+          
+            <ion-buttons start>
+                <button (click)="dismiss()">
+                <ion-icon name='close' ></ion-icon>
+                </button>
+            </ion-buttons>
+    </ion-toolbar>
+</ion-navbar>
+
+<ion-content padding style="background:#eee" class="contact-form">    
+    <ion-card>
+        <img src="img/{{contact.thumb}}">
+        
+        <button class="fab-heart" fab fab-right>
+            <ion-icon name="{{contact.is_fav == 0 ? 'heart-outline' : 'heart'}}"></ion-icon>
+        </button>
+
+        <ion-item>
+            <ion-icon name="contact" item-left large></ion-icon>
+            <h2>{{contact.name}}</h2>
+            <p>{{contact.description}}</p>
+        </ion-item>
+
+        <ion-item>
+            <ion-icon name="call" item-left large ></ion-icon>
+            <h2>{{contact.mobile}}</h2>            
+        </ion-item>
+
+        <ion-item>
+            <span item-left>{{contact.createdDate | date:'medium'}}</span>            
+        </ion-item>
+
+   </ion-card>
+</ion-content>

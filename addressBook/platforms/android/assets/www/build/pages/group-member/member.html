@@ -1,0 +1,32 @@
+<ion-navbar *navbar>
+    <ion-toolbar indigo> 
+          <ion-title>
+              <div class="toolbar-title">
+                  Contact Details
+              </div>
+          </ion-title>
+          
+            <ion-buttons start>
+                <button (click)="dismiss()">
+                <ion-icon name='close' ></ion-icon>
+                </button>
+            </ion-buttons>
+    </ion-toolbar>
+</ion-navbar>
+
+<ion-content padding style="background:#eee" class="group-form" >
+    <h1>Group : {{group.name}}</h1>
+    
+    <ion-list>
+        <ion-item *ngFor="#member of members; #i = index" m-b-10>
+            
+            <ion-label>{{member.name}} ( {{member.mobile}} )</ion-label>
+            <ion-checkbox indigo [(ngModel)]="member.checked" checked="true" dark class="large {{group.isView ? 'hidden' : 'show'}}"></ion-checkbox>
+            <ion-avatar item-right>
+                <img src="img/{{member.thumb}}" />
+            </ion-avatar>            
+        </ion-item>
+    </ion-list>
+</ion-content>
+
+<ion-icon *ngIf="! group.isView" class="navbar-add-icon indigo" name="checkmark" (click)="saveGroupMembers()"></ion-icon>

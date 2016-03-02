@@ -1,0 +1,31 @@
+
+<ion-navbar *navbar>
+  <ion-toolbar sky class="favourite-bg">
+      <ion-title>
+        <div class="toolbar-title">Favourites</div>
+     </ion-title>
+  </ion-toolbar>
+</ion-navbar>
+
+<ion-content padding class="page2" >
+      
+  <ion-searchbar m-t-10 m-b-10 #keyword (input)="filterContact(keyword.value)"></ion-searchbar>
+  
+        <ion-card *ngFor="#contact of contacts" class="favourite-card" (click)="viewContact(contact)">
+            <ion-card-header>
+                 <img src="img/{{contact.thumb}}" />    
+            </ion-card-header>
+            <ion-card-content class="inner">
+                <h2>{{contact.name}}</h2>
+                <p>{{contact.description}}</p>
+                    
+                 <button clear class="fav-icon">
+                    <ion-icon  sky name="{{contact.is_fav == 0 ? 'heart-outline' : 'heart'}}"></ion-icon>
+                </button>
+                         
+            </ion-card-content>    
+        </ion-card>
+  
+        <h2 padding *ngIf="totalContact == 0">No Contacts Found</h2>
+    
+</ion-content>
