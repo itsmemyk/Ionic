@@ -1,0 +1,32 @@
+<ion-navbar *navbar>
+  <ion-title>Contact Details</ion-title>
+</ion-navbar>
+
+<ion-content padding>
+    <ion-card>
+        <ion-card-header class="accent">
+            My Contact
+        </ion-card-header>
+        <ion-card-content>
+            <ion-list>
+                <ion-item>
+                    Name : {{contact.name}}        
+                </ion-item>
+                <ion-item>
+                    Mobile : {{contact.mobileNo}}        
+                </ion-item>
+                <ion-item>
+                    Created : {{contact.createdOn | date:'medium'}}        
+                </ion-item>
+                <ion-item>
+                    Updated : {{contact.updatedOn | date:'medium'}}        
+                </ion-item>
+            </ion-list>
+            
+            <h3></h3>
+            <h3></h3>
+            <h3></h3>
+        </ion-card-content>
+    </ion-card>
+</ion-content>
+    

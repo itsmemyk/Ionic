@@ -36,27 +36,27 @@ export class GroupMember{
     
     memberList(){
         
-        this.db.fetch('select * from group_members where groupid = '+this.group.id,true).subscribe((groupContacts)=>{            
-            this.groupContacts = groupContacts;    
-        })
+        let query = `
+            select c.*,gm.id as GroupId from contacts c JOIN group_members gm ON c.id = gm.memberid where gm.groupid = ${this.group.id} UNION ALL select c.*,0 as GroupId from contacts c where c.id NOT IN (select gm.memberid from group_members gm where gm.groupid = ${this.group.id}) 
+        `;
         
-        this.db.fetch('select * from contacts ',true).subscribe((gm)=>{
+        this.db.fetch(query,true).subscribe((gm)=>{
            
            if(! this.group.isView){            
                 gm.forEach((ele)=>{                             
-                    if(this.groupContacts.find((v)=> v.memberid == ele.id ))
+                    if(ele.GroupId > 0)
                         ele.checked = true;
                     else
                         ele.checked = false;
                         
-                        ele.inGroup = ele.checked;
+                    ele.inGroup = ele.checked;
                 });
            }
            else {
                gm = gm.filter((ele)=>{
-                   if(this.groupContacts.find((v)=> v.memberid == ele.id ))
+                   if(ele.GroupId > 0)
                         return true;
-                    else
+                   else
                         return false; 
                });
            }

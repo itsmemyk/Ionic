@@ -1,0 +1,29 @@
+
+<ion-navbar *navbar>
+  <button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+  </button>
+  <ion-title>
+    Tab 3
+  </ion-title>
+</ion-navbar>
+
+<ion-content padding class="page3">
+    <h1>Inputs</h1> 
+    <ion-card>
+        <ion-card-header>
+            {{ welcome | titlecase }} [Points : {{rate*20}}]
+        </ion-card-header>
+        <ion-card-content>
+            <axelor-rate [(rate)]="rate" default="0"></axelor-rate> 
+            <axelor-input [(input)]="txt1" label="A" type="number" placeholder="Enter A"></axelor-input>
+            <axelor-input [(input)]="txt2" label="B" type="number" placeholder="Enter B"></axelor-input>
+            <axelor-input [(input)]="input"></axelor-input>
+            {{input}}
+            <button dark block (click)="calc()">Sum</button>
+            {{result}}
+            
+            
+        </ion-card-content>
+    </ion-card>
+</ion-content>

@@ -1,0 +1,64 @@
+<ion-navbar *navbar>
+    <button menuToggle>
+        <ion-icon name="menu"></ion-icon>
+    </button>
+  <ion-title>Wheather Report</ion-title>
+</ion-navbar>
+
+<ion-content padding class="page1">
+  <ion-col>
+      <ion-card>
+          <ion-card-header class="accent">
+              Fill Details
+          </ion-card-header>
+          <ion-card-content>
+              <ion-list>
+                  <ion-item>
+                      <ion-label>Country</ion-label>
+                      <ion-select [(ngModel)]="selectedCountry">
+                          <ion-option *ngFor="#c of countryList" value="{{ c }}">{{c}}</ion-option>
+                      </ion-select>
+                  </ion-item>
+                  
+                  <ion-item>
+                      <ion-label>City</ion-label>
+                      <ion-select [(ngModel)]="selectedCity" (change)="getWeatherReport()">
+                          <ion-option *ngFor="#c of cityList" value="{{ c }}">{{c}}</ion-option>
+                      </ion-select>
+                  </ion-item>
+<br/>
+                    <button block light (click)="getWeatherReport()">Show</button>
+              </ion-list>
+              
+          </ion-card-content>
+          
+      </ion-card>
+      
+      <ion-card>
+          <ion-card-header class="pink">
+              Wheather Information 
+          </ion-card-header>
+          
+          <ion-card-content>
+              <ion-list>
+                  <ion-item>
+                      <ion-icon name="body" item-left></ion-icon>
+                      <span>Area : {{forecast.name}}</span>                      
+                  </ion-item>
+                  <ion-item>
+                      <ion-icon name="planet" item-left></ion-icon>
+                      Location : {{coord.lat}},{{coord.lon}}                      
+                  </ion-item>
+                  <ion-item>
+                      <ion-icon name="cloud" item-left></ion-icon>
+                      Weather : {{weather.description}}                      
+                  </ion-item>
+                  <ion-item>
+                      <ion-icon name="rainy" item-left></ion-icon>
+                      Wind : {{wind.speed}} speed, {{wind.deg}} deg                      
+                  </ion-item>
+              </ion-list>
+          </ion-card-content>
+      </ion-card>
+  </ion-col>
+</ion-content>

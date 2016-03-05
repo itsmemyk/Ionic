@@ -1,0 +1,19 @@
+.page2 {
+    .accent {
+        background: #3F51B5;
+        color:#fff;
+        font-size:25px;
+    }
+    .grey {
+        background: #eee;
+    }
+    ion-icon {
+        cursor: pointer;
+    }
+    ion-segment {
+        max-height: 30px !important;
+    }
+    ion-segment-button {
+        color:#fff;
+    }
+}

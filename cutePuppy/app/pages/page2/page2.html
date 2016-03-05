@@ -1,0 +1,73 @@
+
+<ion-navbar *navbar>
+  <button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+  </button>
+  <ion-title>
+    Contact App
+  </ion-title>
+</ion-navbar>
+
+<ion-segment [(ngModel)]="segment" >
+    <ion-segment-button value="all">
+        All
+    </ion-segment-button>
+    <ion-segment-button value="favorites">
+        Favorites
+    </ion-segment-button>
+</ion-segment>
+  
+<ion-content class="page2">
+    <ion-col padding *ngIf="segment == 'all'">
+        <ion-card>
+            <ion-card-header class="accent">
+                Fill Details
+            </ion-card-header>
+            <ion-card-content>
+                <ion-list>
+                    <ion-item>
+                        <ion-label floating>Name</ion-label>
+                        <ion-input type="text" [(ngModel)]="contact.name"></ion-input>
+                    </ion-item>
+                    <ion-item>
+                        <ion-label floating>Mobile</ion-label>
+                        <ion-input type="number" [(ngModel)]="contact.mobileNo"></ion-input>
+                    </ion-item>
+                    <br/>
+                    <button secondary (click)="saveContact()">Save</button>
+                    <button light (click)="refreshList()">Cancel</button>
+                </ion-list>
+            </ion-card-content>
+        </ion-card>
+    </ion-col>
+    
+    <ion-col padding *ngIf="segment == 'all'">
+        <ion-searchbar (input)="searchContact($event)"></ion-searchbar>
+        <ion-card *ngFor="#contact of contacts;">
+            <ion-card-header class="grey">                
+                <ion-icon name="settings" (click)="editContact(contact)" item-left></ion-icon>
+                <ion-icon name="trash" (click)="removeContact(contact)" item-left></ion-icon>
+                <ion-icon name="open" (click)="viewContact(contact)" item-left></ion-icon>
+                <ion-icon name="heart" (click)="favouriteContact(contact)" item-left></ion-icon>
+                   
+               {{contact.name}}
+            </ion-card-header>
+            <ion-card-content padding>
+                Number : {{contact.mobileNo}}
+            </ion-card-content>
+        </ion-card>
+    </ion-col>
+    
+    <ion-col padding *ngIf="segment == 'favorites'">
+        <ion-searchbar (input)="searchContact($event)"></ion-searchbar>
+        <ion-list>
+             <ion-item-sliding *ngFor="#contact of favContacts" >
+                <ion-item padding>
+                    <h3>Name : {{index}} {{contact.name}} </h3> 
+                    <p>Contact : {{contact.mobileNo}}</p>                    
+                </ion-item>
+            </ion-item-sliding>
+        </ion-list>
+    </ion-col>
+    
+</ion-content>

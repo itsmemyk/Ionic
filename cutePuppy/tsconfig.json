@@ -1,0 +1,17 @@
+{
+  "compilerOptions": {
+    "allowNonTsExtensions": true,
+    "isolatedModules": true,
+    "target": "es5",
+    "module": "commonjs",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "sourceMap": false,
+    "inlineSourceMap": false,
+    "inlineSources": false
+  },
+  "exclude": [
+    "node_modules"
+  ],
+  "compileOnSave": false
+}

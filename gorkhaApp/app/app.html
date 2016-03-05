@@ -1,0 +1,26 @@
+<ion-menu [content]="content" class="sidebar">
+    
+    <ion-content class="outer-content">
+        <div class="sidebar-top">
+            <div class="overlay">
+                <img src="img/sidebar.png" />
+            </div>
+            <div class="profile">
+                <div class="thumb">
+                    <img src="img/profile.png" />
+                </div>
+                <div class="content">
+                    <h2>itsmemyk@gmail.com</h2>
+                </div>
+            </div>
+        </div>
+        <ion-list no-lines>
+            <button ion-item menuClose *ngFor="#p of pages" (click)="openNavPage(p)" [ngClass]="{active:p.isActive}">
+                <ion-icon item-left [name]="p.icon"></ion-icon>
+                {{p.title}}
+            </button>
+        </ion-list>
+    </ion-content>
+</ion-menu>
+
+<ion-nav [root]="rootPage" id="nav" #content swipe-back-enabled="false"></ion-nav>

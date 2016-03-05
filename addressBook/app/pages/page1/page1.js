@@ -22,11 +22,7 @@ export class Page1 {
         this.nav = nav;
         this.db = db;    
         this.events = events;
-                
-        /*
-        this.db.fetch("select * from group_members",true).subscribe((data)=>{
-           console.log(data); 
-        });*/
+        
         //this.db.create("group_members",{id:"INTEGER PRIMARY KEY AUTOINCREMENT",groupid:"INTEGER REFERENCES groups(id)",memberid:"INTEGER REFERENCES contacts(id)"})
     }
     

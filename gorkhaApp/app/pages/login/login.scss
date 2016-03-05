@@ -1,0 +1,23 @@
+
+.login {
+    background: url('../../img/login.jpg');
+    background-position:38% 9%;
+    
+    .fill-form {
+        background: transparent;        
+        padding: 20px 0;     
+        @include box-shadow(0,15px,25px,rgba(0,0,0,0.45));
+        
+        ion-item {
+              background-color: transparent !important;
+              
+              ion-input {
+                  border-bottom: 2px solid #fff;
+              }
+              ion-input,ion-label {
+                  color: #fff;
+                  font-weight: bolder;
+              }
+        }
+    }
+}
