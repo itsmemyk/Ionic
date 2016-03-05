@@ -26,7 +26,7 @@ export class MyApp {
       {title:'Family', component: TabsPage, index: 3, icon: 'happy', isActive:false},
       {title:'Staff', component: TabsPage, index: 2, icon: 'body', isActive:false},
       {title:'Vehicles', component: TabsPage, index: 2, icon: 'car', isActive:false},
-      {title:'Logout', component: TabsPage, index: 2, icon: 'log-out', isActive:false}  
+      {title:'Logout', component: LoginPage, index: 2, icon: 'log-out', isActive:false}  
     ];
     
     platform.ready().then(() => {
