@@ -20,9 +20,13 @@ export class MyApp {
     
     
     this.pages = [
-      {title:'Page1', component: TabsPage, index: 0, icon: 'rainy', isActive:true},
-      {title:'Page2', component: TabsPage, index: 1, icon: 'people', isActive:false},
-      {title:'Page3', component: TabsPage, index: 2, icon: 'map', isActive:false}  
+      {title:'Live Visitors', component: TabsPage, index: 0, icon: 'people', isActive:true},
+      {title:'Check In/Out', component: TabsPage, index: 1, icon: 'checkmark-circle', isActive:false},
+      {title:'Events', component: TabsPage, index: 2, icon: 'calendar', isActive:false},
+      {title:'Family', component: TabsPage, index: 3, icon: 'happy', isActive:false},
+      {title:'Staff', component: TabsPage, index: 2, icon: 'body', isActive:false},
+      {title:'Vehicles', component: TabsPage, index: 2, icon: 'car', isActive:false},
+      {title:'Logout', component: TabsPage, index: 2, icon: 'log-out', isActive:false}  
     ];
     
     platform.ready().then(() => {
