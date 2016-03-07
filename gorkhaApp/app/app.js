@@ -1,5 +1,7 @@
-import {App, Platform, IonicApp} from 'ionic-angular';
+import {App, Platform, IonicApp, Events} from 'ionic-angular';
 import {TabsPage} from './pages/tabs/tabs';
+import {VisitorTabsPage} from './pages/visitor/tabs';
+import {Dashboard} from './pages/dashboard/dashboard';
 import {LoginPage} from './pages/login/login';
 
 
@@ -11,27 +13,30 @@ import {LoginPage} from './pages/login/login';
 })
 export class MyApp {
   static get parameters() {
-    return [[Platform],[IonicApp]];
+    return [[Platform],[IonicApp],[Events]];
   }
 
-  constructor(platform,app) {
-    this.rootPage = LoginPage;
+  constructor(platform,app,events) {
+    this.rootPage = VisitorTabsPage;
+    
+   // this.rootPage = LoginPage;
     this.app = app;
+    this.events = events;
     
     
     this.pages = [
-      {title:'Live Visitors', component: TabsPage, index: 0, icon: 'people', isActive:true},
-      {title:'Check In/Out', component: TabsPage, index: 1, icon: 'checkmark-circle', isActive:false},
-      {title:'Events', component: TabsPage, index: 2, icon: 'calendar', isActive:false},
-      {title:'Family', component: TabsPage, index: 3, icon: 'happy', isActive:false},
-      {title:'Staff', component: TabsPage, index: 2, icon: 'body', isActive:false},
-      {title:'Vehicles', component: TabsPage, index: 2, icon: 'car', isActive:false},
-      {title:'Logout', component: LoginPage, index: 2, icon: 'log-out', isActive:false}  
+      {title:'Dashboard', component: Dashboard, index: 0,  icon: 'happy', isActive:true},
+      {title:'Live Visitors', component: VisitorTabsPage, index: 0, icon: 'people', isActive:false},
+      {title:'Check In/Out', component: VisitorTabsPage, index: 3,  icon: 'checkmark-circle', isActive:false},
+      {title:'Events', component: VisitorTabsPage, index: 0,  icon: 'calendar', isActive:false},
+      {title:'Family', component: VisitorTabsPage, index: 0,  icon: 'happy', isActive:false},
+      {title:'Staff', component: VisitorTabsPage, index: 0,  icon: 'body', isActive:false},
+      {title:'Vehicles', component: VisitorTabsPage, index: 0,  icon: 'car', isActive:false},
+      {title:'Logout', component: VisitorTabsPage, index: 2,  icon: 'log-out', isActive:false}  
     ];
     
     platform.ready().then(() => {
-    
-    
+            
       // The platform is now ready. Note: if this callback fails to fire, follow
       // the Troubleshooting guide for a number of possible solutions:
       //
@@ -47,6 +52,8 @@ export class MyApp {
       // good for dark backgrounds and light text:
       // StatusBar.setStyle(StatusBar.LIGHT_CONTENT)
     });
+    
+    this.listen();
   }
   
   
@@ -55,11 +62,21 @@ export class MyApp {
          
     let nav = this.app.getComponent('nav');
     
-    
     if(nav){
-        console.log("page",page);    
-        nav.setRoot(page.component, {tabIndex: page.index});
+        this.pages.forEach((ele)=>{
+           ele.isActive = false; 
+        });
+        page.isActive = true;    
+        nav.setRoot(page.component, {tabIndex: page.index,itemIndex: page.itemIndex});
     }    
     
+  }
+  
+  listen(){
+      this.events.subscribe("menu:item:changed",function(event,args){
+         var selectedItem = args.selectedItem;
+         
+         console.log(selectedItem); 
+      });
   }
 }

@@ -62215,10 +62215,6 @@
 	        this.db = db;
 	        this.events = events;
 
-	        /*
-	        this.db.fetch("select * from group_members",true).subscribe((data)=>{
-	           console.log(data); 
-	        });*/
 	        //this.db.create("group_members",{id:"INTEGER PRIMARY KEY AUTOINCREMENT",groupid:"INTEGER REFERENCES groups(id)",memberid:"INTEGER REFERENCES contacts(id)"})
 	    }
 
@@ -62258,7 +62254,7 @@
 	    }, {
 	        key: 'editContact',
 	        value: function editContact(contact) {
-	            console.log(contact);
+	            //console.log(contact);
 	            var form2 = _ionic.Modal.create(_form.ContactForm, contact);
 	            this.nav.present(form2);
 	        }
@@ -62351,7 +62347,7 @@
 	var ContactForm = exports.ContactForm = (_dec = (0, _ionic.Page)({
 	    templateUrl: 'build/pages/contact-form/form.html',
 	    providers: [_db.Database],
-	    styles: ['\n    ion-avatar {\n        cursor: pointer;\n    }\n    ion-label {\n        padding-left: 10px;\n        color:#3F51B5 !important;\n    }\n    ion-input {\n        padding-left: 13px;\n        background: #eee;\n    }\n \n  ']
+	    styles: ['\n    ion-avatar {\n        cursor: pointer;\n    }\n    ion-label {\n        padding-left: 10px;\n        color:#3F51B5 !important;\n    }\n    ion-input,ion-textarea {\n        padding-left: 13px;\n        background: #eee;\n    }\n \n  ']
 	}), _dec(_class = function () {
 	    _createClass(ContactForm, null, [{
 	        key: 'parameters',
@@ -62378,7 +62374,6 @@
 	            is_fav: 0,
 	            createdOn: Date.now()
 	        };
-	        console.log(navParams);
 	    }
 
 	    _createClass(ContactForm, [{
@@ -62656,7 +62651,7 @@
 
 	            this.platform.ready().then(function () {
 	                _this5.storage.query(query).then(function (data) {
-	                    console.log("Sql Executed ");
+	                    console.log("Sql Success ");
 	                }, function (err) {
 	                    console.log("SQLite Error" + JSON.stringify(err));
 	                });
@@ -63045,25 +63040,19 @@
 	        value: function memberList() {
 	            var _this = this;
 
-	            this.db.fetch('select * from group_members where groupid = ' + this.group.id, true).subscribe(function (groupContacts) {
-	                _this.groupContacts = groupContacts;
-	            });
+	            var query = '\n            select c.*,gm.id as GroupId from contacts c JOIN group_members gm ON c.id = gm.memberid where gm.groupid = ' + this.group.id + ' UNION ALL select c.*,0 as GroupId from contacts c where c.id NOT IN (select gm.memberid from group_members gm where gm.groupid = ' + this.group.id + ') \n        ';
 
-	            this.db.fetch('select * from contacts ', true).subscribe(function (gm) {
+	            this.db.fetch(query, true).subscribe(function (gm) {
 
 	                if (!_this.group.isView) {
 	                    gm.forEach(function (ele) {
-	                        if (_this.groupContacts.find(function (v) {
-	                            return v.memberid == ele.id;
-	                        })) ele.checked = true;else ele.checked = false;
+	                        if (ele.GroupId > 0) ele.checked = true;else ele.checked = false;
 
 	                        ele.inGroup = ele.checked;
 	                    });
 	                } else {
 	                    gm = gm.filter(function (ele) {
-	                        if (_this.groupContacts.find(function (v) {
-	                            return v.memberid == ele.id;
-	                        })) return true;else return false;
+	                        if (ele.GroupId > 0) return true;else return false;
 	                    });
 	                }
 

@@ -13,7 +13,7 @@
   <ion-searchbar #keyword (input)="filterContact(keyword.value)"></ion-searchbar>
   <ion-list>
       <ion-item-sliding *ngFor="#contact of contacts" class="shadow">
-        <ion-item (dblclick)="viewContact(contact)" title="Created on {{ contact.createdOn }}">
+        <ion-item (click)="viewContact(contact)" title="Created on {{ contact.createdOn }}">
             <ion-thumbnail item-left>
                 <img src="img/{{contact.thumb}}" />
             </ion-thumbnail>

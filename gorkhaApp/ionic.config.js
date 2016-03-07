@@ -20,7 +20,7 @@ module.exports = {
     },
     watch: {
       sass: ['app/**/*.scss'],
-      html: ['app/**/*.html'],
+      html: ['app/**/*.html','app/**/**/*.html'],
       livereload: [
         'www/build/**/*.html',
         'www/build/**/*.js',

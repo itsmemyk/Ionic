@@ -12,7 +12,7 @@ export class LoginPage {
     constructor(nav){
         this.nav = nav;
         this.auth = false;
-        //this.login();
+    //    this.login();
         this.authenticate();
     }
     

@@ -37,7 +37,7 @@ export class Page1 {
       
       logg.log("Just Demo Log");
   }
-  
+  //http://api.openweathermap.org/data/2.5/weather?q=surat,IN&appid=44db6a862fba0b067b1930da0d769e98
   getWeatherReport(){
       
     this.http.get(this.url+"?q="+this.selectedCity+","+this.selectedCountry+"&appid=44db6a862fba0b067b1930da0d769e98")
