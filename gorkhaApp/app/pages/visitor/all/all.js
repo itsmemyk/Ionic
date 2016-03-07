@@ -29,7 +29,7 @@ export class AllVisitor {
         this.visitors.push({name:"wxy",desc:"10:30 AM - 04:50 PM",img:"img/avatar11.png"});
         
             asyncTask.complete();   
-        },2000);
+        },15000);
         
     }
 }
