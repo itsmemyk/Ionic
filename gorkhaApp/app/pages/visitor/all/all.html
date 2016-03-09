@@ -1,20 +1,26 @@
 <ion-navbar *navbar orange class="no-shadow">
-    <button menuToggle class="show">
-        <ion-icon name='menu'></ion-icon>
-    </button>
-    <ion-title class="center">Manage Visitors</ion-title>
+        <button menuToggle class="show">
+            <ion-icon name='menu'></ion-icon>
+        </button>
+        <ion-title class="center">Manage Visitors</ion-title>
+        <ion-buttons end>
+            <button purple>
+                <ion-icon name="more" class="whitey"></ion-icon>
+            </button>
+        </ion-buttons>
+    
 </ion-navbar>
 
 <ion-content padding class="visitor animated pulse">
-    <ion-refresher (refresh)="doRefresh($event)">
+    <!--<ion-refresher (refresh)="doRefresh($event)">
         <ion-refresher-content></ion-refresher-content>
-    </ion-refresher>
+    </ion-refresher>-->
 
      <ion-searchbar m-b-10></ion-searchbar>
      
      <ion-list class="list">
          
-         <ion-list-header class="green bold">Today</ion-list-header>
+         <ion-list-header class="green bold">{{ 'Today' }}</ion-list-header>
          
          
          <ion-item>
@@ -72,7 +78,7 @@
          </ion-item>
      </ion-list>
       
-     <ion-infinite-scroll (infinite)="doRefresh($event)">
+     <ion-infinite-scroll id="iscroller" (infinite)="doRefresh($event)">
         <ion-infinite-scroll-content></ion-infinite-scroll-content>
      </ion-infinite-scroll>
      

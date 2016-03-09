@@ -1,8 +1,9 @@
-import {App, Platform, IonicApp, Events} from 'ionic-angular';
+import {App, Platform, IonicApp, Config} from 'ionic-angular';
 import {TabsPage} from './pages/tabs/tabs';
 import {VisitorTabsPage} from './pages/visitor/tabs';
 import {Dashboard} from './pages/dashboard/dashboard';
 import {LoginPage} from './pages/login/login';
+import {Page1} from './pages/page1/page1';
 
 
 @App({
@@ -13,15 +14,18 @@ import {LoginPage} from './pages/login/login';
 })
 export class MyApp {
   static get parameters() {
-    return [[Platform],[IonicApp],[Events]];
+    return [[Platform],[IonicApp],[Config]];
   }
 
-  constructor(platform,app,events) {
-    this.rootPage = VisitorTabsPage;
+  constructor(platform,app,config) {
     
-   // this.rootPage = LoginPage;
+    
+    //this.rootPage = VisitorTabsPage;
+    
+    this.rootPage = Page1;
     this.app = app;
-    this.events = events;
+    
+       
     
     
     this.pages = [
@@ -36,7 +40,9 @@ export class MyApp {
     ];
     
     platform.ready().then(() => {
-            
+        
+      config.set('title','Digital Gorkha');
+        
       // The platform is now ready. Note: if this callback fails to fire, follow
       // the Troubleshooting guide for a number of possible solutions:
       //
@@ -53,7 +59,6 @@ export class MyApp {
       // StatusBar.setStyle(StatusBar.LIGHT_CONTENT)
     });
     
-    this.listen();
   }
   
   
@@ -66,17 +71,12 @@ export class MyApp {
         this.pages.forEach((ele)=>{
            ele.isActive = false; 
         });
+        
         page.isActive = true;    
+        
         nav.setRoot(page.component, {tabIndex: page.index,itemIndex: page.itemIndex});
     }    
     
   }
   
-  listen(){
-      this.events.subscribe("menu:item:changed",function(event,args){
-         var selectedItem = args.selectedItem;
-         
-         console.log(selectedItem); 
-      });
-  }
 }

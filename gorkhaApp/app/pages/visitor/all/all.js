@@ -1,35 +1,57 @@
-import {Page,Events,NavController} from 'ionic-angular';
+import {Platform, Page,Events,NavController,Config} from 'ionic-angular';
+import {Pipe} from 'angular2/core';
+
+
+@Pipe({name: 'repeat'})
+export class RepeatPipe{
+  transform(value, args) {
+    if (args.length == 0) {
+      throw new Error('repeat pipe requires one argument');
+    }
+    let times = args[0];
+    return value.repeat(times);
+  }
+}
+
 
 @Page({
-    templateUrl: 'build/pages/visitor/all/all.html',    
+    templateUrl: 'build/pages/visitor/all/all.html',
+    pipes: [RepeatPipe]    
 })
 
 export class AllVisitor {
     
     static get parameters(){
-        return [[NavController],[Events]]
+        return [[Platform],[NavController],[Events],[Config]]
     }
     
-    constructor(nav,events){
+    constructor(platform,nav,events,config){
+        this.platform = platform;
         this.nav = nav;
         this.events = events;
         this.visitors = [];
         
+        this.platform.ready().then(()=>{
+            console.log("title"+config.get('appTitle'));    
+        });
     }
     
     doRefresh(asyncTask){
         
-        console.log(asyncTask);
-        
+        this.refresheer = asyncTask;
+                
         setTimeout(()=>{
-        this.visitors.push({name:"abc",desc:"10:30 AM - 04:50 PM",img:"img/avatar7.png"});
-        this.visitors.push({name:"xyz",desc:"10:30 AM - 04:50 PM",img:"img/avatar8.png"});
-        this.visitors.push({name:"pqr",desc:"10:30 AM - 04:50 PM",img:"img/avatar9.png"});
-        this.visitors.push({name:"mno",desc:"10:30 AM - 04:50 PM",img:"img/avatar10.png"});
-        this.visitors.push({name:"wxy",desc:"10:30 AM - 04:50 PM",img:"img/avatar11.png"});
+            this.visitors.push({name:"VV0"+Math.round(Math.random()*11),desc:"10:30 AM - 04:50 PM",img:"img/avatar13.png"});        
+            asyncTask.complete(); 
+           
+        },1000);
         
-            asyncTask.complete();   
-        },15000);
-        
+    }
+    
+    ngAfterContentChecked(){
+        //console.log("view  content checked");
+    }
+    
+    ngOnDestroy(){
     }
 }

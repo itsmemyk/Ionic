@@ -1,4 +1,4 @@
-import {Page,NavParams,Events} from 'ionic-angular';
+import {Page,NavParams,Events,IonicApp} from 'ionic-angular';
 import {AllVisitor} from './all/all';
 import {LiveVisitor} from './live/live';
 import {ExpectedVisitor} from './expected/expected';
@@ -20,13 +20,13 @@ import {LoginPage} from '../login/login';
 })
 export class VisitorTabsPage {
   static get parameters(){
-      return [[NavParams],[Events]];
+      return [[NavParams],[IonicApp]];
   }
   
-  constructor(navParams,events) {
+  constructor(navParams,app) {
       
     this.tabIndex = navParams.data.tabIndex;
-    this.events = events;
+    this.app = app;
     // this tells the tabs component which Pages
     // should be each tab's root Page
     this.tab1Root = AllVisitor;
@@ -37,4 +37,13 @@ export class VisitorTabsPage {
     
     //this.events.subscribe()
   }
+  
+  ngOnDestroy(){
+      let scroller = this.app.getComponent('iscroller');
+      
+      if(scroller){
+        scroller.enable(false);
+      } 
+  }
 }
+

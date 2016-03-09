@@ -3,13 +3,39 @@
 </ion-navbar>
 
 <ion-content padding class="page1">
-  <h2>Welcome to Ionic!</h2>
-  <p>
-    This starter project comes with simple tabs-based layout for apps
-    that are going to primarily use a Tabbed UI.
-  </p>
-  <p>
-    Take a look at the <code>www/app/</code> directory to add or change tabs,
-    update any existing page or create new pages.
-  </p>
+    
+  <h2>Welcome to Ionic!{{rate*20}}</h2>
+  
+  <br/>
+  <br/>
+  <h2>Today Component</h2>
+  <br/>
+  <today id="myk" (dateChange)="changed($event)"></today>
+  
+  <br/>
+  <br/>
+  <h2>Axelor Rate</h2>
+  <br/>
+  <axelor-rate [(rate)]="rate" (rateChange)="rateChanged($event)" default="0"></axelor-rate>
+  
+  <br/>
+  <br/>
+  <h2>Axelor Input : {{txt}}</h2>
+  <br/>
+  
+  
+  <br/>
+  <ion-list>
+      <axelor-input [(input)]="txt" label="Name"></axelor-input>        
+      <ion-item>
+        <ion-label floating>dhkjhd</ion-label>
+        <ion-input type="text"></ion-input>        
+      </ion-item>
+  </ion-list>
+
+  <br/>
+  <br/>
+  <h2>List Component</h2>
+  <br/>
+  <axelor-list [data]="peoples" thumb="img" title="name" desc="info"></axelor-list>  
 </ion-content>
