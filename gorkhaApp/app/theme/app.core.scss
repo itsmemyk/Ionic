@@ -123,6 +123,15 @@ ion-menu {
     font-weight: bolder;
 }
 
+.align-left {
+    position:absolute;
+    left:5px;
+}
+.align-right {
+    position:absolute;
+    right:5px;
+}
+
 .fancy-add {
     position: absolute;
     bottom: 2rem;
@@ -143,3 +152,16 @@ ion-menu {
         }    
     }
 }
+
+.filtered .infinite-loading-spinner {
+    display: none;
+}
+
+.invalidstate {
+     .item-inner{
+        border-bottom:2px solid #B71C1C !important;     
+     }
+}
+.error-msg {
+    color:#B71C1C;
+}    

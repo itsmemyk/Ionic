@@ -4,15 +4,15 @@ import {IONIC_DIRECTIVES} from 'ionic-angular';
 @Component({
     selector:'axelor-input',    
     outputs:['updateInput : inputChange'],
-    inputs:['input','type','label','placeholder']    
+    inputs:['input','type','label','placeholder','xField : x-field']    
 })
 
 @View({
     template:`
-    <ion-item>
-        <ion-label floating>{{label}}</ion-label>
-        <ion-input [type]="type" #txt (keyup)="onChange(txt.value)" [placeholder]="placeholder"></ion-input>
-    </ion-item>         
+        <ion-item>
+            <ion-label floating>{{label}}</ion-label>
+            <ion-input [type]="type" #txt (keyup)="onChange(txt.value)" [placeholder]="placeholder"></ion-input>        
+        </ion-item>         
     `,
     directives:[IONIC_DIRECTIVES],
 })
@@ -25,9 +25,12 @@ export class AxelorInput {
         this.updateInput =  new EventEmitter();
     }
     
+    ngOnInit(){
+        console.log(this.xField);
+    }
+    
     onChange(v){
         this.input = v;
-        console.log(this.input);
         this.updateInput.next(this.input);
     }
 }

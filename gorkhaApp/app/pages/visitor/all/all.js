@@ -23,7 +23,7 @@ export class AllVisitor {
     
     static get parameters(){
         return [[Platform],[NavController],[Events],[Config]]
-    }
+    } 
     
     constructor(platform,nav,events,config){
         this.platform = platform;

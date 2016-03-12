@@ -4,6 +4,7 @@ import {VisitorTabsPage} from './pages/visitor/tabs';
 import {Dashboard} from './pages/dashboard/dashboard';
 import {LoginPage} from './pages/login/login';
 import {Page1} from './pages/page1/page1';
+import {Page2} from './pages/page2/page2';
 
 
 @App({
@@ -22,7 +23,7 @@ export class MyApp {
     
     //this.rootPage = VisitorTabsPage;
     
-    this.rootPage = Page1;
+    this.rootPage = TabsPage;
     this.app = app;
     
        

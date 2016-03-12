@@ -4,23 +4,38 @@
 
 <ion-content padding class="page1">
     
-  <h2>Welcome to Ionic!{{rate*20}}</h2>
+  <h2><ion-icon name="happy"></ion-icon> <ion-icon name="happy"></ion-icon> <ion-icon name="happy"></ion-icon> <ion-icon name="happy"></ion-icon> <ion-icon name="happy"></ion-icon> </h2>
   
+  
+  <br/>
+  
+  
+  <br/>
+  <h2>Grid Component</h2>
+  <br/>
+  <axelor-grid [data]="peoples" (select)="viewPeople($event)">
+      <!--<field name="index" title="No"></field>-->
+      <field name="fullName.firstName" title="First" search="true"></field>
+      <field name="fullName.lastName" title="Last" search="true"></field>    
+      <field name="img"  title="Image" type="image"></field>
+      <field name="info.more.content" title="Extra" ></field>      
+  </axelor-grid>
+    
   <br/>
   <br/>
   <h2>Today Component</h2>
   <br/>
   <today id="myk" (dateChange)="changed($event)"></today>
   
+  <br/> 
   <br/>
-  <br/>
-  <h2>Axelor Rate</h2>
+  <h2>Rate Component [{{rate*20}}]</h2>
   <br/>
   <axelor-rate [(rate)]="rate" (rateChange)="rateChanged($event)" default="0"></axelor-rate>
   
   <br/>
   <br/>
-  <h2>Axelor Input : {{txt}}</h2>
+  <h2>Input Component : {{txt}}</h2>
   <br/>
   
   
@@ -37,5 +52,6 @@
   <br/>
   <h2>List Component</h2>
   <br/>
+  
   <axelor-list [data]="peoples" thumb="img" title="name" desc="info"></axelor-list>  
 </ion-content>

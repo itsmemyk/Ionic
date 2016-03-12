@@ -6,5 +6,13 @@
 </ion-navbar>
 
 <ion-content class="page2">
-
+  
+  <axelor-grid [data]="peoples" lazyLoading="true" lazyRecords="6">
+      <field name="index" title="SR"></field>            
+      <field name="fullName.firstName" title="First" search="true"></field>
+      <field name="fullName.lastName" title="Last" search="true"></field>
+      <field name="img" title="Image" type="image"></field>
+      <field name="info.more.content" title="Extra" search="true"></field>      
+  </axelor-grid>
+  
 </ion-content>

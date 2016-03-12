@@ -5,6 +5,45 @@
   </ion-title>
 </ion-navbar>
 
-<ion-content class="page3">
-
+<ion-content padding class="page3">
+    
+    
+    <ion-list>
+        <axelor-password axelorControl="oldPassword" x-label="Old Password" ></axelor-password>
+        <axelor-password axelorControl="newPassword" x-label="New Password" ></axelor-password>
+        <axelor-password axelorControl="confirmPassword" x-label="Confirm Password" ></axelor-password>
+    </ion-list>
+    
+    <!--<ion-list>
+        <axelor-input [(input)]="username" type="text" label="Username"></axelor-input>
+        <axelor-input [(input)]="password" type="password" label="Password" x-field="123"></axelor-input>
+        
+    </ion-list>
+    
+    <form>
+    </form>-->
+    
+<!--    
+    <form #f="ngForm" (ngSubmit)="submit(f.value)">
+        <ion-list>
+            <ion-item>
+                <ion-label floating>Username</ion-label>
+                <ion-input type="text" ngControl="username"></ion-input>
+                <axelor-password-change ngController="newPassword" xField="newPassword" />
+            </ion-item>
+            <ion-item>
+                <ion-label floating>Password</ion-label>
+                <ion-input type="password" ngControl="password" x-valid-if="password === passwordCompare"></ion-input>
+                <ion-input type="password" ngControl="passwordCompare" x-valid-if=""></ion-input>
+            </ion-item>
+            <br/>
+            <button pink>Login</button>
+        </ion-list>
+    </form>
+    
+    
+    -->
+    <!--<p>Username {{username}}</p>
+    <p>Password {{password}}</p>-->
+    
 </ion-content>
