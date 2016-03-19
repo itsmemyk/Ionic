@@ -8,11 +8,10 @@ import {FormControl} from './form.control.com';
     template:`
         <ion-item [ngClass]="{invalidstate:!valid}">
             <ion-label floating>{{label}}</ion-label>
-            <ion-input #txt type="password" [(ngModel)]="value"></ion-input>                        
+            <ion-checkbox [(ngModel)]="value"></ion-input>                        
         </ion-item>
-        <div m-l-20 m-t-5 [ngClass]="{hide:valid}" class="error-msg">{{errorMessage}}</div>
     `,
-    inputs:["label : x-label","value : x-value","minLen : x-min-length","maxLen : x-max-length","regex : x-regex","regexMsg : x-regex-msg","validIf : x-valid-if","validIfMsg : x-valid-if-msg","required : x-required","requiredMsg : x-required-msg","axelorControl"],
+    inputs:["label : x-label","value : x-value","required : x-required","requiredMsg : x-required-msg","axelorControl"],
     output:["updateValue : valueChange","handleInvalid : invalid"],
     directives:[IONIC_DIRECTIVES],
     styles:[`
@@ -20,14 +19,14 @@ import {FormControl} from './form.control.com';
     `]
 })
 
-export class PasswordComponent extends FormControl{
+export class CheckboxComponent extends FormControl{
     
     static get parameters(){
-        return [[AxelorFormComponent],[ElementRef]];
+        return [[AxelorFormComponent]];
     }
     
     constructor(form,ele){        
-        super("com.form.control.password");                
+        super("com.form.control.checkbox");                
         form.addCom(this);
     }
     

@@ -48,6 +48,6 @@ $colors: (
         color:$rgb;
     } 
     .bg-#{$color} {
-        background-color: $rgb;
+        background-color: $rgb !important;
     } 
 }

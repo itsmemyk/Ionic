@@ -38,12 +38,12 @@ export class Page1 {
     }
     
     viewPeople(people){
-        /*
+        
         let alert = Alert.create({
             title:'Record Data',
             subTitle:'<b>'+JSON.stringify(people)+'</b>',
             buttons: ['Ok']    
         }); 
-        this.nav.present(alert);*/
+        this.nav.present(alert);
     }
 }

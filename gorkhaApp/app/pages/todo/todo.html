@@ -1,0 +1,15 @@
+
+<ion-navbar *navbar class="no-shadow">
+  <ion-title>
+    To Do App
+  </ion-title>
+</ion-navbar>
+
+<ion-content padding class="todo">
+    <todo-form (newTodo)="addNewTodo($event)"></todo-form>
+    <br/>
+    <h2>{{remain}} of {{todo.length}} remaining</h2>
+    <todo-list [data]="todo" ></todo-list>
+    
+    <button (click)="test('this.todo.length > 2')" dark>Test</button>
+</ion-content>

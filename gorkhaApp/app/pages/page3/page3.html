@@ -6,15 +6,45 @@
 </ion-navbar>
 
 <ion-content padding class="page3">
+    <!--<button id="btn1" (custom)="clickMe()">Hi</button>-->
     
+    <axelor-form abstract="false"  id="customRenderer" entity="com.axelor.user.db.Users">
+        
+        <axelor-input axelorControl="name" x-label="Name" x-required="true" x-required-msg="Enter Full name" x-regex="^[A-Za-z]+" x-regex-msg="Must Start with Alphabets"></axelor-input>
+        
+        <axelor-password axelorControl="oldPassword" x-label="Old Password" x-required="true" x-required-msg="Enter Old Password"></axelor-password>
+        <axelor-password axelorControl="newPassword" x-label="New Password" x-required="true" x-valid-if="this.length >= 6 && this.length <=10" x-valid-if-msg="Must be 6 to 10"></axelor-password>
+        <axelor-password axelorControl="confirmPassword" x-label="Confirm Password" x-valid-if="this == newPassword" x-valid-if-msg="Password Should Match"></axelor-password>
+        
+        <axelor-select axelorControl="passwordType" x-label="Password" x-multiple="true">
+            <axelor-select-option x-value="Weak">Weak</axelor-select-option>    
+            <axelor-select-option x-value="Strong" x-checked="true">Strong</axelor-select-option>
+            <axelor-select-option x-value="Medium" x-checked="true">Medium</axelor-select-option>
+        </axelor-select>
+        
+        <axelor-button x-label="Save" color="pink"></axelor-button>
+        
+    </axelor-form>
     
-    <ion-list>
-        <axelor-password axelorControl="oldPassword" x-label="Old Password" ></axelor-password>
-        <axelor-password axelorControl="newPassword" x-label="New Password" ></axelor-password>
-        <axelor-password axelorControl="confirmPassword" x-label="Confirm Password" ></axelor-password>
-    </ion-list>
+    <!--<button (click)="test()" > click</button>        
+
+    <div #dynamicWidget>
+        
     
-    <!--<ion-list>
+    </div>
+    -->
+    <!--
+        <axelor-form entity="com.axelor.code.db.Code">
+            <axelor-input axelorControl="title"/>
+            <axelor-input axelorControl="code" />    
+        </axelor-form>
+        
+        <axelor-grid entity="com.axelor.code.db.Code">
+            <field name="title"/>
+            <field name="code"/>    
+        </axelor-grid>
+        
+        <ion-list>
         <axelor-input [(input)]="username" type="text" label="Username"></axelor-input>
         <axelor-input [(input)]="password" type="password" label="Password" x-field="123"></axelor-input>
         
@@ -33,7 +63,7 @@
             </ion-item>
             <ion-item>
                 <ion-label floating>Password</ion-label>
-                <ion-input type="password" ngControl="password" x-valid-if="password === passwordCompare"></ion-input>
+                    <ion-input type="password" ngControl="password" x-valid-if="password === passwordCompare"></ion-input>
                 <ion-input type="password" ngControl="passwordCompare" x-valid-if=""></ion-input>
             </ion-item>
             <br/>

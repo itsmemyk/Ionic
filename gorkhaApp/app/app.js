@@ -5,6 +5,8 @@ import {Dashboard} from './pages/dashboard/dashboard';
 import {LoginPage} from './pages/login/login';
 import {Page1} from './pages/page1/page1';
 import {Page2} from './pages/page2/page2';
+import {TodoApp} from './pages/todo/todo';
+import {CodePage} from './pages/code/code';
 
 
 @App({
@@ -23,12 +25,9 @@ export class MyApp {
     
     //this.rootPage = VisitorTabsPage;
     
-    this.rootPage = TabsPage;
+    this.rootPage = CodePage;
     this.app = app;
-    
-       
-    
-    
+        
     this.pages = [
       {title:'Dashboard', component: Dashboard, index: 0,  icon: 'happy', isActive:true},
       {title:'Live Visitors', component: VisitorTabsPage, index: 0, icon: 'people', isActive:false},

@@ -1,11 +1,14 @@
 import {Component,EventEmitter} from 'angular2/core';
-import {IonicApp,IONIC_DIRECTIVES} from 'ionic-angular';
+import {Alert,Events,IonicApp,IONIC_DIRECTIVES,NavController,Modal} from 'ionic-angular';
 import {AxelorGridField} from './grid.field.com';
 import {PropertyGetter} from './../pipes/getter.pipe';
+import {AxelorRestService} from './../services/axelor.rest';
+import {FormCreator} from './../pages/create/create';
+import {FormEditor} from './../pages/edit/edit';
 
 @Component({
     selector:'axelor-grid',
-    inputs:['data','lazyLoading','lazyRecords'],
+    inputs:['ref','entity','lazyLoading','lazyRecords'],
     outputs:['recordSelected : select'],
     template:`
     <ion-content>
@@ -13,11 +16,14 @@ import {PropertyGetter} from './../pipes/getter.pipe';
             
             <ion-searchbar [(ngModel)]="keyword" (input)="filterRecords()" ></ion-searchbar>
             
-            <ion-row class="head" >
+            <ion-row class="head" m-t-10>
                 <ion-col *ngFor="#heading of fields;" (click)="doSort(heading.name)">
                     <ion-icon class="align-left" name="arrow-dropdown" *ngIf="sort == heading.name && sortAsc"></ion-icon>
                     {{heading.title}}
                     <ion-icon class="align-right" name="arrow-dropup" *ngIf="sort == heading.name && !sortAsc"></ion-icon>
+                </ion-col>
+                <ion-col>
+                    Action
                 </ion-col>
             </ion-row>       
             
@@ -39,12 +45,16 @@ import {PropertyGetter} from './../pipes/getter.pipe';
                             </p>
                         </div>
                     </div>
+                </ion-col>
+                <ion-col>
+                    <ion-icon name="create" (click)="editRecord(record.id)" m-r-10></ion-icon>
+                    <ion-icon name="trash" (click)="removeRecord(record.id)"></ion-icon>
                 </ion-col>        
             </ion-row>
             
             <ion-row *ngIf="totalDisplayRecords == 0" class="row-border">
                 <ion-col>
-                    <h2>No Records Found</h2>
+                    <p>No Records Found</p>
                 </ion-col>
             </ion-row>
             
@@ -57,20 +67,24 @@ import {PropertyGetter} from './../pipes/getter.pipe';
         </div>
     </ion-content>
 
+    <button clear class="favorite fancy-add" (click)="newRecord()">
+        <ion-icon name="add" class="whitey" f-s-20></ion-icon>
+    </button>
+
     `,  
     styles:[`        
         .axelor-grid {
-            font-size:1.6rem;
+            font-size:1.3rem;
         }
         .axelor-grid ion-row.head {
-            background:#BDBDBD;
-            font-size:1.8rem;
+            background:#eee;
+            font-size:1.4rem;
             font-weight:bolder;
         }
         .row-border {
             margin-top:0 !important;
             padding-top:10px;
-            border-bottom:3px solid #BDBDBD;
+            border-bottom:1.5px solid #eee;
         }
         .row-border:hover {
             background:#eee;
@@ -85,16 +99,19 @@ import {PropertyGetter} from './../pipes/getter.pipe';
       'class':'axelor-grid-com'  
     },
     directives: [IONIC_DIRECTIVES,AxelorGridField],
-    providers:[AxelorGridField,PropertyGetter],
+    providers:[AxelorGridField,PropertyGetter,AxelorRestService],
     pipes:[PropertyGetter]
 })
 
 export class AxelorGrid {
     static get parameters(){
-        return [[IonicApp],[PropertyGetter]];
+        return [[IonicApp],[PropertyGetter],[AxelorRestService],[NavController],[Events]];
     }
     
-    constructor(app,getter){
+    constructor(app,getter,rest,nav,events){
+        this.events = events;
+        this.nav = nav;
+        this.axelor = rest;
         this.app = app;
         this.lazyRecords = 0;
         this.limit = 5;
@@ -104,40 +121,78 @@ export class AxelorGrid {
         this.recordSelected = new EventEmitter();    
         this.sort = "index";
         this.sortAsc = true;
-        this.isFiltering = false;     
+        this.isFiltering = true;     
         this.keyword = "";       
+        this.data = [];
+        
+        
     }
     
     ngOnInit(){           
+        this.entityTitle = this.entity.substring(this.entity.lastIndexOf(".")+1);        
+        this.axelor.entity = this.entity;
         
-        this.storedData = this.data;
+        this.events.subscribe(`refresh:${this.entity}:grid:com`,()=>{
+           this.refreshGrid(); 
+        });                                  
+    }
+    
+    
+    ngAfterContentInit(){
+        this.formComponent = this.app.getComponent(this.ref);           
         
-        this.lazyLoading = this.lazyLoading == 'true' ? true : false;
-        
-        this.totalDisplayRecords = this.totalRecords = this.storedData.length;    
-
-        if(this.lazyLoading){
-            
-            this.lazyRecords = this.lazyRecords || this.lastIndex;                  
-            this.lastIndex = parseInt(this.lazyRecords);
-            
-            if(this.totalRecords < this.lastIndex){
-                this.lastIndex = this.totalRecords;
-            }
-                   
-            this.data = this.storedData.slice(0,this.lastIndex);
-                                       
-        } else {
-            this.lastIndex = this.totalRecords;
-        }                             
+        this.axelor.login().subscribe(()=>{           
+            this.refreshGrid();    
+        }); 
     }
     
     /**
      * Field Child Control <field></field>
      */
     
-    addNew(com){        
+    addNew(com){                
         this.fields.push(com);        
+    }
+    
+    refreshGrid(){
+        // console.log(this.fields);
+        let searchFields = ["id"];
+        
+        this.fields.forEach((f)=>{
+            if(f.name != "index")
+                searchFields.push(f.name);    
+        });
+        
+        // console.log(searchFields);
+        
+        this.axelor.search(searchFields).map(res => res.json()).subscribe((data)=>{
+            
+            this.data = data.data;
+            
+            this.storedData = this.data;
+    
+            this.lazyLoading = this.lazyLoading == 'true' ? true : false;
+            
+            this.totalDisplayRecords = this.totalRecords = this.storedData.length;    
+
+            if(this.lazyLoading){
+                
+                this.lazyRecords = this.lazyRecords || this.lastIndex;                  
+                this.lastIndex = parseInt(this.lazyRecords);
+                
+                if(this.totalRecords < this.lastIndex){
+                    this.lastIndex = this.totalRecords;
+                }
+                    
+                this.data = this.storedData.slice(0,this.lastIndex);
+                                        
+            } else {
+                this.lastIndex = this.totalRecords;
+            }
+            
+        },(err)=>{
+            console.log("Rest Error",err)
+        });
     }
     
     /*
@@ -147,7 +202,7 @@ export class AxelorGrid {
     filterRecords(){
         let q = this.keyword.toLowerCase();
         
-        if(q == ''){
+        if(q == '' && this.totalRecords > 40){
             this.isFiltering = false;
         }else{
             this.isFiltering = true;
@@ -205,6 +260,7 @@ export class AxelorGrid {
      * Do Refreshing 
      */
     doRefresh(asyncTask){
+        this.isFiltering = false;     
         this.isScrolling = true;
         
         console.log("rendering");
@@ -220,7 +276,7 @@ export class AxelorGrid {
                asyncTask.enable(false);
            }
            this.isScrolling = false;        
-        },500);
+        },50000);
         
         /*setTimeout(()=>{
             if(this.totalRecords <= this.lastIndex){
@@ -236,7 +292,45 @@ export class AxelorGrid {
     
     pagingGrid(){
         
-        this.data.push(this.storedData[this.lastIndex-1]);
+        this.data.push(tis.storedData[this.lastIndex-1]);
         //console.log(this.storedData,this.lastIndex);
+    }
+    
+    newRecord(){
+       let modal = Modal.create(FormCreator,this.formComponent)
+       this.nav.present(modal);
     }    
+    
+    editRecord(id){
+       let modal = Modal.create(FormEditor,{hdnId:id,formComponent:this.formComponent})
+       this.nav.present(modal);
+    }    
+    
+    removeRecord(id){
+       let confirm = Alert.create({
+          title:`Remove ${this.entityTitle}`,
+          body:" Are you sure Want to Remove ?",
+          buttons:[{
+              text:"Ok",
+              handler:()=>{      
+                this.axelor.delete(id).subscribe(()=>{
+                    this.refreshGrid();
+                    
+                    let alert = Alert.create({
+                        title:`${this.entityTitle}`,
+                        subTitle:"Record Removed!!!",
+                        buttons: ["Ok"]
+                    });
+                    
+                    this.nav.present(alert);
+                });        
+              }
+          },{
+              text:"Cancel",
+              handler:()=>{      
+              }  
+          }]
+      });
+      this.nav.present(confirm);
+    }
 }

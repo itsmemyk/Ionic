@@ -1,13 +1,13 @@
 
 <ion-navbar *navbar class="no-shadow">
   <ion-title>
-    Tab 2
+    Grid Component
   </ion-title>
 </ion-navbar>
 
 <ion-content class="page2">
   
-  <axelor-grid [data]="peoples" lazyLoading="true" lazyRecords="6">
+  <axelor-grid [data]="peoples" lazyLoading="true" lazyRecords="10">
       <field name="index" title="SR"></field>            
       <field name="fullName.firstName" title="First" search="true"></field>
       <field name="fullName.lastName" title="Last" search="true"></field>
