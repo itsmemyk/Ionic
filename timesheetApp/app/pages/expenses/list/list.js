@@ -1,17 +1,31 @@
 import {Page} from 'ionic-angular';
+import {Database} from './../../../services/db.sqlite';
 
 @Page({
   templateUrl: 'build/pages/expenses/list/list.html',
-  directives:[]
+  directives:[],
+  providers:[Database]
 })
 
 export class ExpensesList {
-  constructor() {      
+    
+  static get parameters(){
+    return [[Database]];    
+  }
+  
+  constructor(database) {
+      this.db = database;
+            
       this.expenses = [];
       
-      this.expenses.push({date:new Date(2015,10,24),type:'Type1',total:24000});
-      this.expenses.push({date:new Date(2015,4,14),type:'Type2',total:5000});
-      this.expenses.push({date:new Date(2015,3,24),type:'Type3',total:45000});
-      this.expenses.push({date:new Date(2015,7,24),type:'Type4',total:12000});
+      this.db.fetch("select * from json_data where model='expenses'",true).subscribe((data)=>{
+        if(data.length > 0 && data[0].records){
+            let records = JSON.parse(data[0].records);
+            records.forEach((rec)=>{
+                rec.date = new Date(rec.date);
+            });
+            this.expenses = records; 
+        }  
+      });
   }
 }

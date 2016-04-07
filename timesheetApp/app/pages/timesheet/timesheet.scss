@@ -18,4 +18,47 @@
         font-size:5rem;
     }
 }
+
+.timesheet-timer {
+    text-align: center;
+    
+    h1 {
+        margin:4rem auto !important;    
+        font-size:6rem;
+    }
+    
+    .play-wrapper {
+        height: 9rem;
+        width: 9rem;
+        margin: 1rem auto;
+        
+        &.start {
+            background: #16a765;    
+        }
+        
+        &.end {
+            background: #C62828;    
+        }
+        
+        color: #fff;
+        @include border-radius(100%);
+        text-align: center;
+        
+        .timer-icon {
+            position: relative;
+            left: 0.7rem;
+            top: 1.3rem;    
+            font-size:6rem;    
+        }
+        
+        .stop-icon { 
+            height: 4rem;
+            width:4rem;
+            background: #fff;
+            margin:2.3rem auto;
+            display: inline-block;
+        }
+    }
+}
+
 @import './menu/menu';

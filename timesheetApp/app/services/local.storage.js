@@ -4,45 +4,47 @@ import {Injectable} from 'angular2/core';
 
 @Injectable()
 export class DataService {
-    
-    static get parameters(){
+
+    static get parameters() {
         return [[Events]];
     }
-    
-    constructor(events){
+
+    constructor(events) {
         this._name = 'datastore';
         this.initData();
         this.events = events;
     }
-   
-    get Data(){
+
+    get Data() {
         return this.datastore;
     }
-   
-    set name(newName){
+
+    set name(newName) {
         this._name = newName;
+        this.initData();
     }
-    
-    initData(){        
-        this.storage = new Storage(LocalStorage, {name:this._name});
+
+    initData() {
+        this.storage = new Storage(LocalStorage, { name: this._name });
         this.datastore = null;
-        
+
         this.storage.get(this._name).then((data) => {
+            console.log(data);
             this.datastore = JSON.parse(data);
         });
     }
-    
-    get(){
+
+    get() {
         return this.storage.get(this._name);
     }
-        
-    save(item){
-        this._datastore = item;
+
+    save(item) {
+        this.datastore = item;
         let newStore = JSON.stringify(this.datastore);
         this.storage.set(this._name, newStore);
-    }    
-    
-    clear(){
-        this.storage.set(this._name,{});
+    }
+
+    clear() {
+        this.storage.set(this._name, {});
     }
 }

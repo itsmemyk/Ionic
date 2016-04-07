@@ -1,17 +1,32 @@
-import {Page} from 'ionic-angular';
+import {Page,Platform} from 'ionic-angular';
+import {Settings} from './../../services/settings.service';
+import {DataService} from './../../services/local.storage';
 
 @Page({
   templateUrl: 'build/pages/settings/settings.html',
-  directives:[]
+  directives:[],
+  providers:[DataService,Settings]
 })
 
 export class SettingsPage {
-  constructor() {
   
-      
+  static get parameters(){
+      return [[Platform],[Settings]];
+  }
+  
+  constructor(platform, settingService) {
+    this.settingService = settingService;
+    
+    this.platform = platform;
+    
+    this.platform.ready().then(() => {
+        this.settings = settingService.settingsObject;
+        console.log(settingService.settingsObject);    
+    });
   }
   
   saveSettings(){
-      console.log("settings saved");
+      
+      this.settingService.save(this.settings);
   }
 }
