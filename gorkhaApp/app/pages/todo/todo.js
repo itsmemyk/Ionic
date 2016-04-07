@@ -1,5 +1,6 @@
-import {Page,IONIC_DIRECTIVES} from 'ionic-angular';
+import {Platform,Page,IONIC_DIRECTIVES} from 'ionic-angular';
 import {Decorator,Component,EventEmitter} from 'angular2/core';
+import {AxelorRestService} from './../../services/axelor.rest';
 
 @Component({
     selector:'todo-list',
@@ -53,14 +54,24 @@ export class ToDoForm{
 
 @Page({
     templateUrl:'build/pages/todo/todo.html',
-    directives:[ToDoList,ToDoForm]
+    directives:[ToDoList,ToDoForm],
+    providers:[AxelorRestService]
 })
 
 export class TodoApp {
     
-    constructor(){
+    static get parameters(){
+        return [[Platform],[AxelorRestService]];
+    }
+    
+    constructor(platform,rest){
         this.todo = [{'text':'first note',done:true},{'text':'second note',done:false}];
-        
+    
+        // rest.login().subscribe((done)=>{
+        //     rest.fields("com.axelor.code.db.Code").map(res=>res.json()).subscribe((data)=>{
+        //         console.log(data);
+        //     });   
+        // })                 
     }
     
     get remain(){
@@ -72,6 +83,8 @@ export class TodoApp {
     }
     
     test(str){
-        console.log(eval(str));
+    }
+    trace(){
+        console.log("dhkfhf");
     }
 }

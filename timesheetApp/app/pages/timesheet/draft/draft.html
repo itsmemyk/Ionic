@@ -1,0 +1,16 @@
+<ion-navbar *navbar darkGrey>
+  <ion-title> Draft</ion-title>
+</ion-navbar>
+
+<ion-content padding class="timesheet-draft">    
+    <ion-list no-lines class="">
+        <ion-item *ngFor="#task of tasks;#i = index">
+            <ion-avatar item-left>
+            <ion-icon name="alarm"></ion-icon>
+            </ion-avatar>
+            <h2>{{task.project}}</h2>
+            <p>{{task.date|date:'shortDate'}}</p>
+            <p>{{task.duration}}</p>
+        </ion-item>
+    </ion-list>
+</ion-content>

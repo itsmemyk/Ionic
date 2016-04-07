@@ -25,9 +25,17 @@ import {FormEditor} from './../pages/edit/edit';
                 <ion-col>
                     Action
                 </ion-col>
-            </ion-row>       
-            
-            <ion-row *ngFor="#record of data; #i = index" class="row-border" (click)="handleRecordClick(record)">
+            </ion-row>
+           <!-- <ion-row>
+                <ion-col *ngFor="#field of fields;">
+                    <ion-item>
+                        <ion-input (input)="searchRecords(field)"></ion-input>
+                    </ion-item>
+                </ion-col>
+                <ion-col>
+                </ion-col>
+            </ion-row>-->
+            <ion-row *ngFor="#record of data; #i = index" class="row-border" (click)="handleRecordClick(record)">            
                 <ion-col *ngFor="#field of fields;">
                     <label *ngIf="field.name == 'index'">
                         {{i+1}}
@@ -67,7 +75,7 @@ import {FormEditor} from './../pages/edit/edit';
         </div>
     </ion-content>
 
-    <button clear class="favorite fancy-add" (click)="newRecord()">
+    <button clear  class="sky fancy-add" (click)="newRecord()">
         <ion-icon name="add" class="whitey" f-s-20></ion-icon>
     </button>
 
@@ -80,6 +88,9 @@ import {FormEditor} from './../pages/edit/edit';
             background:#eee;
             font-size:1.4rem;
             font-weight:bolder;
+        }
+        .axelor-grid ion-icon {
+            font-size:2.1rem;
         }
         .row-border {
             margin-top:0 !important;
@@ -114,8 +125,8 @@ export class AxelorGrid {
         this.axelor = rest;
         this.app = app;
         this.lazyRecords = 0;
-        this.limit = 5;
-        this.lastIndex  = 5;
+        this.limit = 40;
+        this.lastIndex = 40;
         this.getter = getter;
         this.fields = [];   
         this.recordSelected = new EventEmitter();    
@@ -124,8 +135,6 @@ export class AxelorGrid {
         this.isFiltering = true;     
         this.keyword = "";       
         this.data = [];
-        
-        
     }
     
     ngOnInit(){           
@@ -140,10 +149,8 @@ export class AxelorGrid {
     
     ngAfterContentInit(){
         this.formComponent = this.app.getComponent(this.ref);           
-        
-        this.axelor.login().subscribe(()=>{           
-            this.refreshGrid();    
-        }); 
+                           
+        this.refreshGrid();             
     }
     
     /**
@@ -155,36 +162,35 @@ export class AxelorGrid {
     }
     
     refreshGrid(){
-        // console.log(this.fields);
         let searchFields = ["id"];
         
         this.fields.forEach((f)=>{
             if(f.name != "index")
                 searchFields.push(f.name);    
         });
-        
-        // console.log(searchFields);
-        
-        this.axelor.search(searchFields).map(res => res.json()).subscribe((data)=>{
+        this.searchFields = searchFields;
+        this.lazyLoading = this.lazyLoading == 'true' ? true : false;
+            
+        if(this.lazyLoading){
+            this.lazyRecords = this.lazyRecords || this.lastIndex;                  
+            this.lazyRecords = this.lastIndex = parseInt(this.lazyRecords);            
+        }
+        this.axelor.search(this.searchFields,null,this.lazyRecords).map(res => res.json()).subscribe((data)=>{
             
             this.data = data.data;
             
             this.storedData = this.data;
     
-            this.lazyLoading = this.lazyLoading == 'true' ? true : false;
-            
-            this.totalDisplayRecords = this.totalRecords = this.storedData.length;    
+            this.totalRecords = data.total;
+            this.totalDisplayRecords = this.data.length;    
 
             if(this.lazyLoading){
-                
-                this.lazyRecords = this.lazyRecords || this.lastIndex;                  
-                this.lastIndex = parseInt(this.lazyRecords);
                 
                 if(this.totalRecords < this.lastIndex){
                     this.lastIndex = this.totalRecords;
                 }
-                    
-                this.data = this.storedData.slice(0,this.lastIndex);
+                // console.log(this.lastIndex,this.totalRecords)                    
+                // this.data = this.storedData.slice(0,this.lastIndex);
                                         
             } else {
                 this.lastIndex = this.totalRecords;
@@ -208,7 +214,7 @@ export class AxelorGrid {
             this.isFiltering = true;
         }
         
-        let tempStore = this.storedData.slice(0,this.lastIndex);
+        let tempStore = this.storedData;
         
         this.data = tempStore.filter((record)=>{
             let match=false;
@@ -267,8 +273,7 @@ export class AxelorGrid {
         
         setTimeout(()=>{
            
-           if(this.totalRecords > this.lastIndex){               
-               this.lastIndex++;
+           if(this.totalRecords > this.lastIndex){                              
                this.pagingGrid();
                asyncTask.complete();
            } else {
@@ -276,7 +281,7 @@ export class AxelorGrid {
                asyncTask.enable(false);
            }
            this.isScrolling = false;        
-        },50000);
+        },100);
         
         /*setTimeout(()=>{
             if(this.totalRecords <= this.lastIndex){
@@ -292,7 +297,22 @@ export class AxelorGrid {
     
     pagingGrid(){
         
-        this.data.push(tis.storedData[this.lastIndex-1]);
+        this.axelor.search(this.searchFields,null,this.lazyRecords,this.lastIndex).map(res => res.json()).subscribe((data)=>{
+            
+            this.lastIndex = this.lastIndex + data.data.length;
+            this.totalRecords = data.total;
+            this.totalDisplayRecords = this.totalDisplayRecords + this.data.length;    
+
+            let pagedData = data.data;
+            
+            for(let row of pagedData){
+                this.data.push(row);
+            }
+        },(err)=>{
+            console.log("Rest Error",err)
+        });
+        
+//        this.data.push(this.storedData[this.lastIndex-1]);
         //console.log(this.storedData,this.lastIndex);
     }
     

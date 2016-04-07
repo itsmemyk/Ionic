@@ -1,0 +1,15 @@
+<ion-navbar *navbar darkGrey class="center">
+  <ion-title>Timesheet Management</ion-title>
+</ion-navbar>
+
+<ion-content padding class="page1">
+
+    <ion-row>
+        <ion-col offset-10 width-80 class="center">
+            <img class="logo" src="img/logo.png" />
+        </ion-col>
+    </ion-row>
+    
+    <timesheet-menu [items]="menuItems"></timesheet-menu>
+    
+</ion-content>

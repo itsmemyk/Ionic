@@ -1,0 +1,22 @@
+
+<ion-navbar *navbar favorite>
+  <ion-title>
+    Axelor Code
+  </ion-title>
+</ion-navbar>
+
+<ion-content padding class="code">
+    
+    <axelor-form id="axelor-rest" entity="com.axelor.code.db.Code">
+        <axelor-input axelorControl="title" x-label="Title" x-required="true" x-required-msg="Enter Title" x-regex="^[A-Za-z]+" x-regex-msg="Start With Alphabets"></axelor-input>
+        <axelor-input axelorControl="code" x-label="Code" x-required="true" x-required-msg="Enter Code" x-valid-if="this != title" x-valid-if-msg="cant be title"></axelor-input>
+        <axelor-button x-label="Save" color="purple"></axelor-button>
+    </axelor-form>
+    
+    <axelor-grid entity="com.axelor.code.db.Code" ref="axelor-rest">
+        <field name="index" title="SR"></field>
+        <field name="code" title="Code"  search="true"></field>
+        <field name="title" title="Title" search="true"></field>
+    </axelor-grid>
+    
+</ion-content>

@@ -40,7 +40,24 @@ export class FormControl {
     }
     
     valueOf(){
-        return this.value;
+        let returnValue;
+        
+        switch(this.type){
+            case 'text':
+                returnValue = this.value;
+                break;          
+            case 'time':
+                returnValue = this.time;
+                break;
+            case 'date':
+                returnValue = this.date;
+                break;                 
+            case 'number':
+                returnValue = this.number;
+                break;                                  
+        }
+        
+        return returnValue;
     }
     
     get length(){
@@ -49,6 +66,16 @@ export class FormControl {
     
     get number(){
         return isNaN(this.value) ? 0 : parseFloat(this.value);
+    }
+    
+    get date(){
+        return new Date(this.value);
+    }
+    
+    get time(){
+        var dt = new Date();
+        var stt = new Date((dt.getMonth() + 1) + "/" + dt.getDate() + "/" + dt.getFullYear() + " " + this.value);
+        return stt.getTime();    
     }
     
 }

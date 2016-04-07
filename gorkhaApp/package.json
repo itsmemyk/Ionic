@@ -19,9 +19,19 @@
     "gulp-autoprefixer": "^3.1.0",
     "gulp-sass": "2.2.0",
     "gulp-watch": "4.3.5",
+    "ionic-native": "^1.1.0",
     "strip-sourcemap-loader": "0.0.1",
     "webpack": "1.12.14"
   },
   "name": "gorkhaapp",
-  "description": "gorkhaApp: An Ionic project"
+  "description": "gorkhaApp: An Ionic project",
+  "cordovaPlugins": [
+    {
+      "locator": "https://github.com/VitaliiBlagodir/cordova-plugin-datepicker.git",
+      "id": "cordova-plugin-datepicker"
+    }
+  ],
+  "cordovaPlatforms": [
+    "android"
+  ]
 }

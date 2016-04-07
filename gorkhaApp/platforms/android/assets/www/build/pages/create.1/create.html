@@ -1,0 +1,35 @@
+<ion-navbar *navbar class="no-shadow">
+  <ion-title>
+    Create {{data.entityTitle}}
+  </ion-title>
+   <ion-buttons start>
+    <button (click)="dismiss()">
+      <span primary showWhen="ios">Cancel</span>
+      <ion-icon name="md-close" showWhen="android,windows"></ion-icon>
+    </button>
+  </ion-buttons>
+</ion-navbar>
+
+<ion-content padding class="create-form">
+    
+    <axelor-form entity="{{entity}}" abstract="false" (onsave)="saveRecord($event)">
+        <div *ngFor="#fc of data.formControls">
+            <span [ngSwitch]="fc.formControl">
+                
+                <axelor-input *ngSwitchWhen="'com.form.control.input'" axelorControl="{{fc.axelorControl}}" x-label="{{fc.label}}" x-required="{{fc.required}}" x-required-msg="{{fc.requiredMsg}}" x-valid-if="{{fc.validIf}}" x-valid-if-msg="{{fc.validIfMsg}}" x-min-length="{{fc.minLen}}" x-max-length="{{fc.maxLen}}"></axelor-input>
+                
+                <axelor-password *ngSwitchWhen="'com.form.control.password'" axelorControl="{{fc.axelorControl}}" x-label="{{fc.label}}" x-required="{{fc.required}}" x-required-msg="{{fc.requiredMsg}}" x-valid-if="{{fc.validIf}}" x-valid-if-msg="{{fc.validIfMsg}}" x-min-length="{{fc.minLen}}" x-max-length="{{fc.maxLen}}"></axelor-password>
+                
+                <axelor-select *ngSwitchWhen="'com.form.control.select'" axelorControl="{{fc.axelorControl}}" x-label="{{fc.label}}" x-multiple="{{fc.multiple}}">
+                    <axelor-select-option *ngFor="#opt of fc.optionControls" x-value="{{opt.value}}" x-checked="{{opt.selected}}">{{opt.label}}</axelor-select-option>
+                </axelor-select>
+                
+                <axelor-button *ngSwitchWhen="'com.form.control.button'" x-label="{{fc.label}}"></axelor-button>
+                
+                <p *ngSwitchDefault>{{fc.formControl}}</p>            
+            </span> 
+        </div>    
+    </axelor-form>
+    
+    
+</ion-content>

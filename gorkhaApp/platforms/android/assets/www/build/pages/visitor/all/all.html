@@ -1,0 +1,90 @@
+<ion-navbar *navbar orange class="no-shadow">
+        <button menuToggle class="show">
+            <ion-icon name='menu'></ion-icon>
+        </button>
+        <ion-title class="center">Manage Visitors</ion-title>
+        <ion-buttons end>
+            <button purple>
+                <ion-icon name="more" class="whitey"></ion-icon>
+            </button>
+        </ion-buttons>
+    
+</ion-navbar>
+
+<ion-content padding class="visitor animated pulse">
+    <!--<ion-refresher (refresh)="doRefresh($event)">
+        <ion-refresher-content></ion-refresher-content>
+    </ion-refresher>-->
+
+     <ion-searchbar m-b-10></ion-searchbar>
+     
+     <ion-list class="list">
+         
+         <ion-list-header class="green bold">{{ 'Today' }}</ion-list-header>
+         
+         
+         <ion-item>
+             <ion-thumbnail item-left>
+                 <img src="img/avatar13.png" />
+             </ion-thumbnail>
+             
+             <h2> Rohit Sharma </h2>
+             <p> 10:30 AM - 04:50 PM ( 5 Hours )</p>
+         </ion-item>
+         <ion-item>
+             <ion-thumbnail item-left>
+                 <img src="img/avatar10.png" />
+             </ion-thumbnail>
+             
+             <h2> Virat Kohli </h2>
+             <p> 10:30 AM - 04:50 PM ( 3 Hours )</p>
+         </ion-item>
+         
+         <ion-list-header class="indigo bold">Yesterday</ion-list-header>
+        
+         <ion-item>
+             <ion-thumbnail item-left>
+                 <img src="img/avatar13.png" />
+             </ion-thumbnail>
+             
+             <h2> Virat Kohli </h2>
+             <p> 10:30 AM - 04:50 PM ( 2 Hours )</p>
+         </ion-item>
+         <ion-item>
+             <ion-thumbnail item-left>
+                 <img src="img/avatar14.ico" />
+             </ion-thumbnail>
+             
+             <h2> Anushka Sharma </h2>
+             <p> 10:30 AM - 04:50 PM ( 4 Hours )</p>
+         </ion-item>
+         <ion-item>
+             <ion-thumbnail item-left>
+                 <img src="img/avatar15.ico" />
+             </ion-thumbnail>
+             
+             <h2> Katrina Kaif </h2>
+             <p> 12:30 AM - 03:20 PM ( 3 Hours )</p>
+         </ion-item>
+         
+         
+         <ion-item *ngFor="#visitor of visitors">
+             <ion-thumbnail item-left>
+                 <img [src]="visitor.img" />
+             </ion-thumbnail>
+             
+             <h2> {{visitor.name}} </h2>
+             <p> {{visitor.desc}} </p>
+         </ion-item>
+     </ion-list>
+      
+     <ion-infinite-scroll id="iscroller" (infinite)="doRefresh($event)">
+        <ion-infinite-scroll-content></ion-infinite-scroll-content>
+     </ion-infinite-scroll>1
+     
+</ion-content>
+
+
+<button clear class="custom fancy-add">
+    <ion-icon name="add" class="whitey" f-s-20></ion-icon>
+</button>

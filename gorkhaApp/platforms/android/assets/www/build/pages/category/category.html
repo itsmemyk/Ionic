@@ -1,0 +1,27 @@
+
+<ion-navbar *navbar favorite>
+  <ion-title>
+    Axelor Category
+  </ion-title>
+</ion-navbar>
+
+<ion-content padding class="category">
+    
+    <axelor-form id="axelor-rest" entity="com.axelor.category.db.Category">
+        <axelor-input axelorControl="title" x-label="Title" x-required="true" x-required-msg="Enter Title" x-regex="^[A-Za-z]+" x-regex-msg="Start With Alphabets"></axelor-input>
+        <axelor-input axelorControl="sortorder" x-type="number" x-label="Sort Order" x-required="true" x-required-msg="Enter Sort Order" x-valid-if="this.number > 0" x-valid-if-msg="must be positive"></axelor-input>
+        <axelor-select axelorControl="status" x-label="Status">
+            <axelor-select-option x-value="yes">Enable</axelor-select-option>
+            <axelor-select-option x-value="no">Disable</axelor-select-option>
+        </axelor-select>
+        <axelor-button x-label="Save" color="purple"></axelor-button>
+    </axelor-form>
+    
+    <axelor-grid entity="com.axelor.category.db.Category" ref="axelor-rest">
+        <field name="index" title="SR"></field>
+        <field name="title" title="Title" search="true"></field>
+        <field name="sortorder" title="SortOrder" search="true"></field>
+        <field name="status" title="Status"  search="true"></field>
+    </axelor-grid>
+    
+</ion-content>

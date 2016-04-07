@@ -1,0 +1,75 @@
+// http://ionicframework.com/docs/v2/theming/
+
+
+// App Shared Imports
+// --------------------------------------------------
+// These are the imports which make up the design of this app.
+// By default each design mode includes these shared imports.
+// App Shared Sass variables belong in app.variables.scss.
+
+@import "mixins";
+
+@import "../pages/home/home";
+
+@import "../pages/timesheet/timesheet";
+
+@import "../pages/expenses/expenses";
+
+@import "../pages/leaves/leaves";
+
+@import "../pages/settings/settings";
+
+@each $dir, $pref in (top:t,left:l,right:r,bottom:b){
+    @each $val in (5,10,20,25){
+        [m-#{$pref}-#{$val}] {
+            margin-#{$dir}: #{$val}px;
+        }     
+        [p-#{$pref}-#{$val}] {
+            padding-#{$dir}: #{$val}px;
+        }       
+    }
+}
+
+@each $val in (10,15,18,20,25,30,35,40,45,50,55,60) {
+    [f-s-#{$val}] {
+        font-size: #{$val/10}rem;
+    }   
+}
+
+@each $align in (left,right,center){
+    .#{$align} {
+        text-align: #{$align}
+    }    
+}
+
+* {
+    font-family: open sans, regular;    
+}
+
+.toolbar {
+    padding:0;
+    @include box-shadow(0,5px,13px,rgba(0, 0, 0, 0.25));
+}
+
+.menu-list {
+    margin:2rem 4rem 0;
+    
+    .menu-list-item {
+        text-align: center;
+        background: #2f4050;
+        color:#a7b1c2;
+        margin-bottom: 2rem;
+        
+        &.highlight {
+            margin-top:4rem;    
+            background-color : #16a765;
+            border:1px solid #139057;
+            color:#fff;
+        }
+        
+        ion-icon {
+            margin-left: -20px;
+            margin-right: 4px;            
+        }
+    }    
+}

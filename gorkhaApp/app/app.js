@@ -1,4 +1,6 @@
 import {App, Platform, IonicApp, Config} from 'ionic-angular';
+import {DataService} from './services/local.provider';
+import {AxelorRestService} from './services/axelor.rest';
 import {TabsPage} from './pages/tabs/tabs';
 import {VisitorTabsPage} from './pages/visitor/tabs';
 import {Dashboard} from './pages/dashboard/dashboard';
@@ -7,26 +9,29 @@ import {Page1} from './pages/page1/page1';
 import {Page2} from './pages/page2/page2';
 import {TodoApp} from './pages/todo/todo';
 import {CodePage} from './pages/code/code';
+import {CategoryPage} from './pages/category/category';
 
 
 @App({
   templateUrl: 'build/app.html',
   config: {
       mode :'md'
-  } // http://ionicframework.com/docs/v2/api/config/Config/
+  }, // http://ionicframework.com/docs/v2/api/config/Config/,
+  providers:[AxelorRestService,DataService]
 })
 export class MyApp {
   static get parameters() {
-    return [[Platform],[IonicApp],[Config]];
+    return [[Platform],[IonicApp],[Config],[DataService]];
   }
 
-  constructor(platform,app,config) {
+  constructor(platform,app,config,local) {
     
     
     //this.rootPage = VisitorTabsPage;
     
-    this.rootPage = CodePage;
+    this.rootPage = LoginPage;
     this.app = app;
+    this.session = local;
         
     this.pages = [
       {title:'Dashboard', component: Dashboard, index: 0,  icon: 'happy', isActive:true},
@@ -39,8 +44,22 @@ export class MyApp {
       {title:'Logout', component: VisitorTabsPage, index: 2,  icon: 'log-out', isActive:false}  
     ];
     
+    this.session.save({username:"admin",password:"admin"});
+    
+    // this.session.authenticate().subscribe((done)=>{
+    //    console.log("done",done) ;
+    // },(error)=>{
+    //     console.log("error",error);
+    // });
+    
     platform.ready().then(() => {
         
+    //   let order = {product:{name:"abc"},qty:5};
+      
+    //   let result = eval('order.product.name');
+      
+    //   console.log("result",result);
+      
       config.set('title','Digital Gorkha');
         
       // The platform is now ready. Note: if this callback fails to fire, follow

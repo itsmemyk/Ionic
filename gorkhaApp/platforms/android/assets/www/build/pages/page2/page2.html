@@ -1,0 +1,18 @@
+
+<ion-navbar *navbar class="no-shadow">
+  <ion-title>
+    Grid Component
+  </ion-title>
+</ion-navbar>
+
+<ion-content class="page2">
+  
+  <axelor-grid [data]="peoples" lazyLoading="true" lazyRecords="10">
+      <field name="index" title="SR"></field>            
+      <field name="fullName.firstName" title="First" search="true"></field>
+      <field name="fullName.lastName" title="Last" search="true"></field>
+      <field name="img" title="Image" type="image"></field>
+      <field name="info.more.content" title="Extra" search="true"></field>      
+  </axelor-grid>
+  
+</ion-content>

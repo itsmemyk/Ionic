@@ -1,5 +1,7 @@
 import {Input,Output,Component,EventEmitter,View} from 'angular2/core';
 import {AxelorFormComponent} from './form.com';
+import {CardComponent} from './card.com';
+
 import {IONIC_DIRECTIVES} from 'ionic-angular';
 import {FormControl} from './form.control.com';
 
@@ -42,13 +44,22 @@ import {FormControl} from './form.control.com';
 @Component({
     selector:'axelor-input',
     template:`
-        <ion-item [ngClass]="{invalidstate:!valid}">
-            <ion-label floating>{{label}}</ion-label>
-            <ion-input type="text" [(ngModel)]="value"></ion-input>                        
-        </ion-item>
-        <div m-l-20 m-t-5 [ngClass]="{hide:valid}" class="error-msg">{{errorMessage}}</div>
+        <div *ngIf="labelType=='floating'">
+            <ion-item [ngClass]="{invalidstate:!valid}">
+                <ion-label floating>{{label}}</ion-label>
+                <ion-input [type]="type" [(ngModel)]="value"></ion-input>
+            </ion-item>
+            <div m-l-20 m-t-5 [ngClass]="{hide:valid}" class="error-msg">{{errorMessage}}</div>
+        </div>
+        <div *ngIf="labelType=='fixed'">
+            <ion-item [ngClass]="{invalidstate:!valid}">
+                <ion-label fixed>{{label}}</ion-label>
+                <ion-input [type]="type" [(ngModel)]="value"></ion-input>
+            </ion-item>
+            <div m-l-20 m-t-5 [ngClass]="{hide:valid}" class="error-msg">{{errorMessage}}</div>
+        </div>
     `,
-    inputs:["label : x-label","value : x-value","minLen : x-min-length","maxLen : x-max-length","regex : x-regex","regexMsg : x-regex-msg","validIf : x-valid-if","validIfMsg : x-valid-if-msg","required : x-required","requiredMsg : x-required-msg","axelorControl"],
+    inputs:["type : x-type","label : x-label","labelType : x-label-type","value : x-value","minLen : x-min-length","maxLen : x-max-length","regex : x-regex","regexMsg : x-regex-msg","validIf : x-valid-if","validIfMsg : x-valid-if-msg","required : x-required","requiredMsg : x-required-msg","axelorControl"],
     output:["updateValue : valueChange","handleInvalid : invalid"],
     directives:[IONIC_DIRECTIVES],
     styles:[`
@@ -62,12 +73,15 @@ export class InputComponent extends FormControl{
         return [[AxelorFormComponent]];
     }
     
-    constructor(form){        
-        super("com.form.control.input");                
+    constructor(form){
+        super("com.form.control.input");
+                          
         form.addCom(this);
     }
     
     ngOnInit(){
-        super.validateControl();        
+        super.validateControl();
+        this.type = this.type || "text"; 
+        this.labelType = this.labelType || "floating";       
     }
 }

@@ -1,0 +1,12 @@
+
+   <axelor-form abstract="false" entity="com.axelor.order.db.Order">
+       <axelor-card heading="Order Information" heading-class="bg-indigo whitey">
+        <axelor-input axelorControl="name" x-label="Name" x-required="true" x-required-msg="Enter Full name" x-regex="^[A-Za-z]+" x-regex-msg="Must Start with Alphabets"></axelor-input>
+        <axelor-input axelorControl="qty" x-type="number" x-label="Qty" x-required="true" x-required-msg="Enter Qty"></axelor-input>
+        <axelor-input axelorControl="orderDate" x-label="Date" x-label-type="fixed" x-type="date" x-required="true" x-required-msg="Select Date" x-valid-if="this > currentDate()" x-valid-if-msg="Invalid Date" ></axelor-input>        
+        <axelor-input axelorControl="orderTime" x-label="Time" x-label-type="fixed" x-type="time" x-required="true" x-required-msg="Select Time" x-valid-if="this > currentTime()" x-valid-if-msg="Invalid Time" ></axelor-input>
+        <axelor-toggle axelorControl="confirmed" x-label="Confirmed"></axelor-toggle><br/>
+        <button m-t-20 light>Order</button>
+       </axelor-card>    
+    </axelor-form>
+    

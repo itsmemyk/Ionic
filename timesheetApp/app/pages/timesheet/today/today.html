@@ -1,0 +1,16 @@
+<ion-navbar *navbar darkGrey>
+  <ion-title> Timesheet Today Tasks</ion-title>
+</ion-navbar>
+
+<ion-content padding class="timesheet-today">    
+     <ion-list no-lines class="">
+        <ion-item *ngFor="#task of tasks;#i = index">
+            <ion-avatar item-left>
+                {{i+1}}
+            </ion-avatar>
+            <h2>{{task.title}}</h2>
+            <p>{{task.project}}</p>
+            <p>{{task.duration}}</p>
+        </ion-item>
+    </ion-list>
+</ion-content>

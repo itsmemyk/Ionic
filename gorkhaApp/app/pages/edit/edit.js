@@ -39,7 +39,7 @@ export class FormEditor {
           this.version = obj.version;
           this.data.formControls.forEach((control)=>{
             //   console.log(control);
-             control.value = obj[control.axelorControl]; 
+             control.value = obj[control.axelorControl];              
           });
       });
     //   console.log(this.navParams);

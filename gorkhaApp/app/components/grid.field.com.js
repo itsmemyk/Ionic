@@ -23,7 +23,6 @@ export class AxelorGridField {
     ngOnInit(){
         this.type = this.type || 'label';
         this.title = this.title || this.name;
-        this.search = this.search == 'true' ? true : false;
-        
+        this.search = this.search == 'true' ? true : false;        
     }
 }

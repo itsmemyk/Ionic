@@ -1,0 +1,29 @@
+<ion-navbar *navbar class="hide">
+  <ion-title center>Login</ion-title>
+</ion-navbar>
+
+<ion-content padding class="login animated fadeIn">
+  <ion-col >
+        <br/>
+        <h1 f-s-45 m-t-20 class="whitey center">Digital Guard</h1>        
+        <ion-card class="fill-form">
+            <ion-card-content p-t-20>
+                <h1 class="whitey" m-t-10 m-b-20>Login Panel</h1>
+                <form action="#">
+                    <ion-list no-lines>
+                        <ion-item m-b-10>    
+                            <ion-label floating>Username</ion-label>                
+                            <ion-input type="text"></ion-input>
+                        </ion-item>
+                        <ion-item m-b-10>                    
+                            <ion-label floating>Password</ion-label>
+                            <ion-input type="password"></ion-input>
+                        </ion-item>
+                        <br/>
+                        <button (click)="login()" block favorite>Login</button>
+                    </ion-list>
+                </form>
+            </ion-card-content>
+        </ion-card>
+  </ion-col>
+</ion-content>

@@ -24,6 +24,8 @@ export class FormCreator {
       this.axelor = rest;      
       this.navParams = navParams;
       this.view = view;
+      
+      console.log(this.navParams);
   }
   
   ngOnInit(){

@@ -5,7 +5,7 @@ import {IONIC_DIRECTIVES} from 'ionic-angular';
 
 @Component({
     selector:'axelor-form',
-    inputs:['entity','abstract'],  
+    inputs:['entity','abstract','appearance'],  
     outputs:['saveHandler: onsave'],  
     template:`
         <form post="#" (submit)="doSubmit($event)" *ngIf="!abstract">
@@ -30,7 +30,7 @@ export class AxelorFormComponent {
         this.formControls = [];
         this.valid = false;    
         this.abstract = true;
-        
+        this.appearance = "bg-light dark";    
         this.saveHandler = new EventEmitter();
         // console.log("form init")            
     }
@@ -38,7 +38,9 @@ export class AxelorFormComponent {
     ngOnInit(){
         this.abstract = this.abstract == 'false' ? false : true;
         this.entityTitle = this.entity.substring(this.entity.lastIndexOf(".")+1);        
-                
+        
+        console.log(this.appearance);        
+        currentTime();        
         // console.log(this.entity);
         // console.log("form-controls",this.formControls);
     }    
@@ -49,6 +51,7 @@ export class AxelorFormComponent {
         // if( this.formControls.find((c)=> c.axelorControl == com.axelorControl) === undefined) 
         
         this.formControls.push(com);
+        // console.log(com);
         // else
         //     throw new Error("AxelorControl Must be Unique !! "+com.axelorControl+" ambiguous")
                         
@@ -76,10 +79,12 @@ export class AxelorFormComponent {
         let formValues = {};
         
         for(let fc of this.formControls){           
-            
+                        
             let Value = fc.value ? fc.value : "";
             
-            if (fc.required === 'true' && Value.trim() === '') {          
+            // Value = isNaN(Value) ? Value.trim() : Value;
+            
+            if (fc.required === 'true' && Value === '') {          
                 fc.valid = false;
                 fc.errorMessage = fc.requiredMsg || "Required !!!";                
             }
@@ -196,4 +201,15 @@ export class AxelorFormComponent {
         }
         
     }
+}
+
+
+function currentTime(){
+    var dt = new Date();
+    var stt = new Date((dt.getMonth() + 1) + "/" + dt.getDate() + "/" + dt.getFullYear() + " " + dt.getHours()+":"+dt.getMinutes());
+    return stt.getTime();    
+}
+
+function currentDate(){    
+    return new Date();    
 }

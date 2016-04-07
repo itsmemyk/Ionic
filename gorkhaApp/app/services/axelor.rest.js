@@ -3,7 +3,7 @@ import {Injectable} from 'angular2/core';
 import {Http,Headers,HTTP_PROVIDERS} from 'angular2/http';
 import 'rxjs/Rx';
 
-const BASEURL="http://localhost:8080/axelor-crm/"
+const BASEURL="http://localhost:8080/axelor-demo/"
 const RESTURL=BASEURL+"ws/rest/";
 
 @Injectable()
@@ -52,13 +52,17 @@ export class AxelorRestService {
         return this._entity;
     }
     
-    login(){
+    login(loginData){
+        
       let url = BASEURL + "login.jsp";
       
       let data = {
                     "username":"admin",
                     "password":"admin"
                     };
+      
+      data = loginData || data;
+                           
       return this.http.post(url,JSON.stringify(data),{headers:this.headers});
     }
     
@@ -140,5 +144,25 @@ export class AxelorRestService {
         let data = {records:removeDatas};
          
         return this.http.post(url,JSON.stringify(data),{headers:this.headers});
+    }
+    
+    fields(modelName){
+        modelName = modelName || this._entity;
+        
+        let url = BASEURL+"ws/meta/fields/"+modelName;        
+        return this.http.get(url,{headers:this.headers});    
+    }
+    
+    models(){
+        let url = BASEURL+"ws/meta/models";        
+        return this.http.get(url,{headers:this.headers});
+    }
+    
+    executeMethod() {
+        
+    }
+    
+    executeAction() {
+        
     }
 }

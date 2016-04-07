@@ -1,0 +1,22 @@
+.leaves {
+    background: #fff;
+}
+.leaves-list {
+    background: #eee;
+    
+    ion-item {
+        margin-top: 1rem;
+        color:#000;
+        padding: 1rem 0 1rem 2rem !important;
+        
+        h2 {
+            font-weight: bold;
+        }
+    }
+    ion-avatar {
+        color: #a1abbc;
+        font-size:5rem;
+    }
+}
+
+@import './menu/menu';
