@@ -1,34 +1,35 @@
-import {Page, Nav} from 'ionic-angular';
+import {Page, Nav, Platform} from 'ionic-angular';
 import {SpinnerDialog} from 'ionic-native';
 import {AlbumImage} from './../album-image/albumImage';
 
 @Page({
-  templateUrl: 'build/pages/login/login.html'
+    templateUrl: 'build/pages/login/login.html'
 })
 export class LoginPage {
-  static get parameters() {
-      return [[Nav]];
-  }
-   
-  constructor(nav) {
-      this.nav = nav;
-      this.scroll = false;
-  }
-  
-  onInput() {
-    this.scroll = true;
-  }
+    static get parameters() {
+        return [[Nav], [Platform]];
+    }
 
-  onBlur() {
-    this.scroll = false;
-  }
-  
-  login() {
-      SpinnerDialog.show("Login","Authenticating Credentials",false);
-      
-      setTimeout(() => {
-          SpinnerDialog.hide();
-          this.nav.push(AlbumImage);
-      },500);
-  }
+    constructor(nav, platform) {
+        this.nav = nav;
+        this.scroll = false;
+
+        platform.ready().then(() => {
+            window.addEventListener('keyboardWillShow', function() {
+                this.scroll = true;
+            });
+            window.addEventListener('keyboardWillHide', function() {
+                this.scroll = false;
+            });
+        });
+    }
+
+    login() {
+        SpinnerDialog.show("Login", "Authenticating Credentials", false);
+
+        setTimeout(() => {
+            SpinnerDialog.hide();
+            this.nav.push(AlbumImage);
+        }, 500);
+    }
 }
