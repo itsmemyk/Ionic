@@ -1,0 +1,57 @@
+.login.page { 
+    background: #E43F3F;
+    font-family: sans-serif;
+    position: relative;
+    
+    .login-wrapper {
+        padding: 4rem 0 2rem;
+        text-align: center;
+        
+        .logo {
+            margin-bottom: 2rem;
+        }      
+        
+        ion-item {
+            background: transparent;
+            margin-bottom: 1.5rem;
+            
+            .item-inner {
+                border-bottom: 2px solid #CACCCC;                
+            }
+            
+            ion-input {
+                font-size: 20px;
+                color:#fff;
+            }
+            
+            ion-label{
+                color: #CACCCC;
+            }
+            
+            &.input-has-value, &.input-has-value {                
+                ion-label {
+                    color: #fff;
+                    font-weight: bold;
+                }
+                .item-inner {
+                    border-bottom: 2.5px solid #fff;
+                }
+            }
+        }
+        
+        .btn-block {
+            margin: 2.5rem 0rem 2rem 1.5rem;
+            
+            button {
+                font-weight: bold;                        
+                @include box-shadow(0px,3px,15px,rgba(0,0,0,0.35))            
+            }
+        }
+        
+        p {
+            color: #F2A5A5;
+            text-align: center;
+            font-weight: bold;
+        }
+    }
+}

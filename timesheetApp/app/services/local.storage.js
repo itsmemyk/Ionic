@@ -28,8 +28,7 @@ export class DataService {
         this.storage = new Storage(LocalStorage, { name: this._name });
         this.datastore = null;
 
-        this.storage.get(this._name).then((data) => {
-            console.log(data);
+        this.storage.get(this._name).then((data) => {            
             this.datastore = JSON.parse(data);
         });
     }
@@ -45,6 +44,6 @@ export class DataService {
     }
 
     clear() {
-        this.storage.set(this._name, {});
+        this.storage.set(this._name, null);
     }
 }

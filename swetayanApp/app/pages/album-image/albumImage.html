@@ -1,0 +1,15 @@
+<ion-navbar *navbar dark>
+  <ion-title>
+    Photo Albums
+  </ion-title>
+</ion-navbar>
+ 
+<ion-content class="page2">
+ 
+    <ion-list [virtualScroll]="items" no-lines approxItemHeight="400px">        
+        <ion-item *virtualItem="#item">    
+            <img [src]="item.avatarUrl"/>            
+        </ion-item>        
+    </ion-list>
+ 
+</ion-content>

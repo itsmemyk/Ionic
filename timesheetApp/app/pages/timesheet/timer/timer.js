@@ -15,20 +15,20 @@ export class TimesheetTimer {
       this.stamp.setHours(0);
       this.stamp.setMinutes(0);
       this.stamp.setSeconds(0);
-      console.log(this.startTime);
-      console.log(this.endTime);
-      
   }
   
   startTask(){
       this.status = true;
+      this.startTime = new Date();
       
+      this.refreshTimer();
   }
   
   refreshTimer(){
       setTimeout(()=>{
-          if(status==true){
-              
+          if(this.status==true){
+              this.stamp = new Date().getTime() - this.startTime.getTime() - 330*60*1000;            
+              this.refreshTimer();
           }
       },1000);
   }

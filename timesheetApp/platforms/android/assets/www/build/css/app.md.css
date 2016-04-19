@@ -17231,7 +17231,12 @@ body {
       width: 4rem;
       background: #fff;
       margin: 2.3rem auto;
-      display: inline-block; }
+      display: inline-block;
+      border-radius: 3px;
+      -moz-border-radius: 3px;
+      -ms-border-radius: 3px;
+      -o-border-radius: 3px;
+      -webkit-border-radius: 3px; }
 
 .timesheet-menu .menu-list {
   margin-top: 6rem; }

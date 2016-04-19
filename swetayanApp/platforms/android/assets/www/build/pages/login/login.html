@@ -1,0 +1,24 @@
+<ion-content padding class="page login" [ngClass]="{fixedScoll:!scroll}">
+  <div class="login-wrapper">
+    <img class="logo" src="img/logo.png" />        
+    <form>
+        <ion-list no-lines>
+            <ion-item>
+                <ion-label floating>Email</ion-label>
+                <ion-input type="text" (focus)="onInput()" (blur)="onBlur()"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label floating>Password</ion-label>
+                <ion-input type="password" (focus)="onInput()" (blur)="onBlur()"></ion-input>
+            </ion-item>
+            <br/>                            
+            <div class="btn-block">
+                <button block swetayan (click)="login()">Login</button>
+            </div>            
+        </ion-list>        
+    </form> 
+    <p>
+        No Account yet? Create one
+    </p>
+  </div>
+</ion-content>

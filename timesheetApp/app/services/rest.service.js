@@ -1,33 +1,21 @@
 import {Http, Headers, HTTP_PROVIDERS} from 'angular2/http';
 import {Injectable} from 'angular2/core';
-import {Settings} from './settings.service';
+import {HttpInterceptor, INTERCEPTOR_PROVIDERS} from './http.interceptor';
 import 'rxjs/Rx';
 
 @Injectable()
 export class RestService {
 
     static get parameters() {
-        return [[Http], [Settings]];
+        return [[HttpInterceptor]];
     }
 
-    constructor(http, settings) {
+    constructor(http) {
         this.http = http;
-        this.settings = settings;
+        this.settings = http.settings;
 
-        let _build = this.http._backend._browserXHR.build;
-        this.http._backend._browserXHR.build = () => {
-            let _xhr = _build();
-            _xhr.withCredentials = true;
-            return _xhr;
-        };
-
-        this._baseURL = settings.url + "/";
+        this._baseURL = this.settings.url + "/";
         this._entity = "";
-
-        this.headers = new Headers();
-        this.headers.append("Accept", "application/json");
-        this.headers.append("Content-Type", "application/json");
-        this.headers.append("X-Requested-With", "XMLHttpRequest");
     }
 
     set entity(newEntity) {
@@ -39,16 +27,7 @@ export class RestService {
     }
 
     login(baseUrl, loginData) {
-        baseUrl = baseUrl || this._baseURL;
-        let url = `${baseUrl}login.jsp`;
-        let data = {
-            "username": this.settings.username,
-            "password": this.settings.password
-        };
-
-        data = loginData || data;
-
-        return this.http.post(url, JSON.stringify(data), { headers: this.headers });
+        return this.http.login(baseUrl, loginData);
     }
 
     logout() {
@@ -72,7 +51,7 @@ export class RestService {
             "offset": offset
         };
 
-        return this.http.post(url, JSON.stringify(data), { headers: this.headers });
+        return this.http.post(url, data);
     }
 
     get(id) {
@@ -88,47 +67,49 @@ export class RestService {
     fetch(id, fields = []) {
         let url = this._entity + "/" + id + "/fetch";
         let data = { fields: fields };
-        return this.http.post(url, JSON.stringify(data), { headers: this.headers });
+        return this.http.post(url, data);
     }
 
     post(id, data) {
         let url = this._entity + "/" + id;
         let postData = { data: data };
-        return this.http.post(url, JSON.stringify(postData), { headers: this.headers });
+        return this.http.post(url, postData);
     }
 
     put(data) {
         let url = this._entity;
         let putData = { data: data };
-        return this.http.put(url, JSON.stringify(putData), { headers: this.headers });
+        return this.http.put(url, putData);
     }
 
     delete(id) {
         let url = this._entity + "/" + id;
-        return this.http.delete(url, { headers: this.headers });
+        return this.http.delete(url);
     }
 
     deleteAll(removeDatas) {
         let url = this._entity + "/removeAll";
         let data = { records: removeDatas };
 
-        return this.http.post(url, JSON.stringify(data), { headers: this.headers });
+        return this.http.post(url, data);
     }
 
     action(actionName, data) {
         let url = this._entity + ":" + actionName;
         let postData = { data: data };
-        return this.http.post(url, JSON.stringify(postData), { headers: this.headers });
+        return this.http.post(url, postData);
     }
 
     fields(modelName) {
         modelName = modelName || this._entity;
         let url = this._baseURL + "ws/meta/fields/" + modelName;
-        return this.http.get(url, { headers: this.headers });
+        return this.http.get(url);
     }
 
     models() {
         let url = this._baseURL + "ws/meta/models";
-        return this.http.get(url, { headers: this.headers });
+        return this.http.get(url);
     }
 }
+
+export var REST_PROVIDERS = [RestService, HttpInterceptor, INTERCEPTOR_PROVIDERS];

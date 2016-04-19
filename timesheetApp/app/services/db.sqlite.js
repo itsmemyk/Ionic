@@ -162,7 +162,7 @@ export class Database {
             this.storage.query(query).then((data) => {
                 console.log("Sql Success ", query)
             }, (err) => {
-                console.log("SQLite Error" + JSON.stringify(err));
+                console.log("SQLite Error" + JSON.stringify(err),query);
             });
         });
     }

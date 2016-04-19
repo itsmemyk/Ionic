@@ -2,7 +2,7 @@ import {Injectable} from 'angular2/core';
 import {DataService} from './local.storage';
 
 @Injectable()
-export class Settings {
+export class SettingsService {
 
     static get parameters() {
         return [[DataService]];
@@ -19,9 +19,9 @@ export class Settings {
         this.auth = false;
 
         this.localStore.get().then((res) => {
-            if (res != null) {
-                let settings = JSON.parse(res);
-
+            let settings = JSON.parse(res);
+            
+            if (settings != null) {                
                 this.url = settings.url;
                 this.username = settings.username;
                 this.password = settings.password;
@@ -44,4 +44,10 @@ export class Settings {
     save(data) {
         this.localStore.save(data);
     }
+
+    clear() {
+        this.localStore.clear();
+    }
 }
+
+export var SETTINGS_PROVIDERS = [SettingsService, DataService]
