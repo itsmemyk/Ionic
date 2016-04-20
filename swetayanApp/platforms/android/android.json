@@ -31,6 +31,14 @@
                         {
                             "xml": "<feature name=\"SpinnerDialog\"><param name=\"android-package\" value=\"hu.dpal.phonegap.plugins.SpinnerDialog\" /></feature>",
                             "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"ActionSheet\"><param name=\"android-package\" value=\"nl.xservices.plugins.actionsheet.ActionSheet\" /></feature>",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"LaunchNavigator\"><param name=\"android-package\" value=\"uk.co.workingedge.phonegap.plugin.LaunchNavigator\" /></feature>",
+                            "count": 1
                         }
                     ]
                 }
@@ -57,6 +65,12 @@
             "PACKAGE_NAME": "com.ionicframework.swetayanapp237283"
         },
         "cordova-plugin-spinner-dialog": {
+            "PACKAGE_NAME": "com.ionicframework.swetayanapp237283"
+        },
+        "cordova-plugin-actionsheet": {
+            "PACKAGE_NAME": "com.ionicframework.swetayanapp237283"
+        },
+        "uk.co.workingedge.phonegap.plugin.launchnavigator": {
             "PACKAGE_NAME": "com.ionicframework.swetayanapp237283"
         }
     },
@@ -102,6 +116,27 @@
             "merges": [
                 "window.plugins.spinnerDialog"
             ]
+        },
+        {
+            "file": "plugins/cordova-plugin-actionsheet/www/ActionSheet.js",
+            "id": "cordova-plugin-actionsheet.ActionSheet",
+            "clobbers": [
+                "window.plugins.actionsheet"
+            ]
+        },
+        {
+            "file": "plugins/uk.co.workingedge.phonegap.plugin.launchnavigator/www/common.js",
+            "id": "uk.co.workingedge.phonegap.plugin.launchnavigator.Common",
+            "clobbers": [
+                "launchnavigator"
+            ]
+        },
+        {
+            "file": "plugins/uk.co.workingedge.phonegap.plugin.launchnavigator/www/android/launchnavigator.js",
+            "id": "uk.co.workingedge.phonegap.plugin.launchnavigator.LaunchNavigator",
+            "merges": [
+                "launchnavigator"
+            ]
         }
     ],
     "plugin_metadata": {
@@ -111,6 +146,8 @@
         "cordova-plugin-statusbar": "2.1.2",
         "cordova-plugin-whitelist": "1.2.1",
         "ionic-plugin-keyboard": "2.0.1",
-        "cordova-plugin-spinner-dialog": "1.3.1"
+        "cordova-plugin-spinner-dialog": "1.3.1",
+        "cordova-plugin-actionsheet": "2.2.2",
+        "uk.co.workingedge.phonegap.plugin.launchnavigator": "3.0.3"
     }
 }

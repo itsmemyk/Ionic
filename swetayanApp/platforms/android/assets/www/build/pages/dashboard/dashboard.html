@@ -1,0 +1,20 @@
+<ion-navbar *navbar hideBackButton dark>
+  <button menuToggle class="show">
+    <ion-icon name='menu'></ion-icon>
+  </button>
+  <ion-title class="center">Sweatayan Studio</ion-title>
+</ion-navbar>
+
+<ion-content padding class="dashboard animated jello">
+    <ion-slides pager>
+    <ion-slide *ngFor="#slide of slides">      
+      <img [src]="slide.image" class="slide-image"/>
+      <h2 class="slide-title" [innerHTML]="slide.title"></h2>
+      <p [innerHTML]="slide.description"></p>
+    </ion-slide>
+  </ion-slides>    
+</ion-content>
+<!--
+<button clear class="lemon fancy-add">
+    <ion-icon name="add" class="dark" f-s-20></ion-icon>
+</button>-->

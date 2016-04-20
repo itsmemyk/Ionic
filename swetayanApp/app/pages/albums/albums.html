@@ -1,0 +1,47 @@
+<ion-navbar *navbar hideBackButton darkGrey>
+    <button menuToggle class="show">
+        <ion-icon name='menu'></ion-icon>
+    </button>
+    <ion-title class="center">My Albums</ion-title>
+</ion-navbar>
+
+<ion-content class="has-header components-demo cards-bg">
+
+    <ion-card *ngFor="#album of items">
+
+        <img [src]="album.avatarUrl" />
+
+        <ion-card-content>
+            <h2 class="card-title">
+        {{album.title}}
+      </h2>
+            <p [innerHtml]="album.description">
+            </p>
+        </ion-card-content>
+
+        <ion-row no-padding>
+            <ion-col>
+                <button clear small danger>
+                    <ion-icon name='star'></ion-icon>
+                    View
+                </button>
+            </ion-col>
+            <ion-col text-center>
+                <button clear small danger>
+                    <ion-icon name='send'></ion-icon>
+                    Comment
+                </button>
+            </ion-col>
+            <ion-col text-right>
+                <button clear small danger>
+                    <ion-icon name='share-alt'></ion-icon>
+                    Share
+                </button>
+            </ion-col>
+        </ion-row>
+    </ion-card>
+
+    <ion-infinite-scroll (infinite)="doInfinite($event)">
+        <ion-infinite-scroll-content></ion-infinite-scroll-content>
+    </ion-infinite-scroll>
+</ion-content>

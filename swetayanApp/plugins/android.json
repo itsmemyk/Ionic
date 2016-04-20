@@ -27,7 +27,14 @@
         },
         "cordova-plugin-spinner-dialog": {
             "PACKAGE_NAME": "com.ionicframework.swetayanapp237283"
+        },
+        "uk.co.workingedge.phonegap.plugin.launchnavigator": {
+            "PACKAGE_NAME": "com.ionicframework.swetayanapp237283"
         }
     },
-    "dependent_plugins": {}
+    "dependent_plugins": {
+        "cordova-plugin-actionsheet": {
+            "PACKAGE_NAME": "com.ionicframework.swetayanapp237283"
+        }
+    }
 }

@@ -23,8 +23,14 @@
     <feature name="SpinnerDialog">
         <param name="android-package" value="hu.dpal.phonegap.plugins.SpinnerDialog" />
     </feature>
+    <feature name="ActionSheet">
+        <param name="android-package" value="nl.xservices.plugins.actionsheet.ActionSheet" />
+    </feature>
+    <feature name="LaunchNavigator">
+        <param name="android-package" value="uk.co.workingedge.phonegap.plugin.LaunchNavigator" />
+    </feature>
     <allow-intent href="market:*" />
-    <name>swetayanApp</name>
+    <name>Swetayan</name>
     <description>An Ionic Framework and Cordova project.</description>
     <author email="hi@ionicframework" href="http://ionicframework.com/">Ionic Framework Team</author>
     <content src="index.html" />

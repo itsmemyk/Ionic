@@ -40,6 +40,27 @@ module.exports = [
         "merges": [
             "window.plugins.spinnerDialog"
         ]
+    },
+    {
+        "file": "plugins/cordova-plugin-actionsheet/www/ActionSheet.js",
+        "id": "cordova-plugin-actionsheet.ActionSheet",
+        "clobbers": [
+            "window.plugins.actionsheet"
+        ]
+    },
+    {
+        "file": "plugins/uk.co.workingedge.phonegap.plugin.launchnavigator/www/common.js",
+        "id": "uk.co.workingedge.phonegap.plugin.launchnavigator.Common",
+        "clobbers": [
+            "launchnavigator"
+        ]
+    },
+    {
+        "file": "plugins/uk.co.workingedge.phonegap.plugin.launchnavigator/www/android/launchnavigator.js",
+        "id": "uk.co.workingedge.phonegap.plugin.launchnavigator.LaunchNavigator",
+        "merges": [
+            "launchnavigator"
+        ]
     }
 ];
 module.exports.metadata = 
@@ -51,7 +72,9 @@ module.exports.metadata =
     "cordova-plugin-statusbar": "2.1.2",
     "cordova-plugin-whitelist": "1.2.1",
     "ionic-plugin-keyboard": "2.0.1",
-    "cordova-plugin-spinner-dialog": "1.3.1"
+    "cordova-plugin-spinner-dialog": "1.3.1",
+    "cordova-plugin-actionsheet": "2.2.2",
+    "uk.co.workingedge.phonegap.plugin.launchnavigator": "3.0.3"
 };
 // BOTTOM OF METADATA
 });

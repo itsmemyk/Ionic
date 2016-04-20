@@ -1,6 +1,6 @@
 import {Page, Nav, Platform} from 'ionic-angular';
 import {SpinnerDialog} from 'ionic-native';
-import {AlbumImage} from './../album-image/albumImage';
+import {Dashboard} from './../dashboard/dashboard';
 
 @Page({
     templateUrl: 'build/pages/login/login.html'
@@ -29,7 +29,7 @@ export class LoginPage {
 
         setTimeout(() => {
             SpinnerDialog.hide();
-            this.nav.push(AlbumImage);
+            this.nav.push(Dashboard);
         }, 500);
     }
 }

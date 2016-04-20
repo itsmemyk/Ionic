@@ -1,7 +1,7 @@
 import {Page} from 'ionic-angular';
 
 @Page({
-    templateUrl: 'build/pages/album-image/albumImage.html'
+    templateUrl: 'build/pages/albums/images/albumImage.html'
 })
 export class AlbumImage {
     constructor() {

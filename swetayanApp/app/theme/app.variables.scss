@@ -30,5 +30,27 @@ $colors: (
   light:      #f4f4f4,
   dark:       #222,
   favorite:   #69BB7B,
-  swetayan: #CC1D1D
+  swetayan: #CC1D1D,
+  green:      #4CAF50,
+  whitey:     #ffffff,
+  lime:       #8BC34A,
+  indigo:     #387ef5,
+  grey:       #eee,
+  purple:     #7e60ff,
+  sky:        #00BCD4,
+  pink:       #E91E63,
+  orange:     #FE585A,
+  darkGrey:   #212121,
+  lemon: #EEFF41,
+  custom: #3CC3B2
 );
+
+
+@each $color,$rgb in $colors {
+    .#{$color} {
+        color:$rgb;
+    } 
+    .bg-#{$color} {
+        background-color: $rgb !important;
+    } 
+}

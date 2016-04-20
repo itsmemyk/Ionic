@@ -11,9 +11,157 @@
 
 @import "../pages/login/login";
 
-@import "../pages/album-image/albumImage";
+@import "../pages/dashboard/dashboard";
+
+@import "../pages/albums/albums";
 
 .fixedScoll scroll-content {
   padding: 16px !important;
   transition: all 0.45s linear;
 }
+
+@each $dir, $pref in (top:t,left:l,right:r,bottom:b){
+    @each $val in (5,10,20,25){
+        [m-#{$pref}-#{$val}] {
+            margin-#{$dir}: #{$val}px;
+        }     
+        [p-#{$pref}-#{$val}] {
+            padding-#{$dir}: #{$val}px;
+        }       
+    }
+}
+
+@each $val in (10,20,25,30,35,40,45,50,55,60) {
+    [f-s-#{$val}] {
+        font-size: #{$val/10}rem;
+    }   
+}
+
+@each $align in (left,right,center){
+    .#{$align} {
+        text-align: #{$align}
+    }    
+}
+
+
+.toolbar:not(.no-shadow) {
+    padding:0;
+    @include box-shadow(0,4px,6px,rgba(0,0,0,0.4));
+}
+
+.show {
+    display: block !important;
+    position: absolute;
+    top: 1.2rem;
+}
+
+.hide {
+    display: none;
+}
+ion-menu {
+    width:90%;
+    background: transparent;
+}
+
+.sidebar {
+    
+    .outer-content {
+        background:rgba(0,0,0,0.8);
+    }
+    
+    .sidebar-top {
+        width: 100%;
+    
+        .overlay {
+            width: 100%;
+            height: 140px;
+            background-image: url('./../../img/sidebar4.jpg');
+            background-size: cover;
+            background-position: 5%;
+        }     
+    }
+    
+    .profile {
+        z-index: 9999;
+        position: absolute;
+        top:2rem;
+        left:2rem;
+        
+        .thumb {
+            @include border-radius(100%);
+            height: 100px;
+            width:100px;
+        }   
+        
+        .content {
+            color:#fff;
+            position: absolute;
+            left: 13rem;
+            top: 0;
+            min-width: 20rem;
+            
+            p {
+                color: #fff;
+                font-weight: bold;
+            }
+        } 
+    }
+    
+    .item {
+        background:transparent;
+        color: #fff;
+        font-weight: bold !important;
+        padding: 0.15rem 3rem;
+    }
+    .item.active {            
+        background: #fff ;
+        color: #000;
+    }
+}
+
+.bold {
+    font-weight: bolder;
+}
+
+.align-left {
+    position:absolute;
+    left:5px;
+}
+.align-right {
+    position:absolute;
+    right:5px;
+}
+
+.fancy-add {
+    position: absolute;
+    bottom: 2rem;
+    right: 2rem;
+    font-weight: bolder;
+    cursor: pointer;
+    color: #fff;
+    height: 55px;
+    width: 55px;
+    z-index: 9999999;
+    
+    @include box-shadow(0,6px,9px,rgba(0,0,0,0.4));
+    @include border-radius(100%);
+    
+    @each $color,$value in $colors {
+        &.#{$color} {
+            background: $value;
+        }    
+    }
+}
+
+.filtered .infinite-loading-spinner {
+    display: none;
+}
+
+.invalidstate {
+     .item-inner{
+        border-bottom:2px solid #B71C1C !important;     
+     }
+}
+.error-msg {
+    color:#B71C1C;
+}    
