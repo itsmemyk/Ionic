@@ -8,7 +8,7 @@
 <ion-content padding class="dashboard animated jello">
     <ion-slides pager>
     <ion-slide *ngFor="#slide of slides">      
-      <img [src]="slide.image" class="slide-image"/>
+      <img src="img/loading.gif" [lazyLoad]="slide.image" offset="100" class="slide-image"/>
       <h2 class="slide-title" [innerHTML]="slide.title"></h2>
       <p [innerHTML]="slide.description"></p>
     </ion-slide>

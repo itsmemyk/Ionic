@@ -1,8 +1,11 @@
 import {Page, NavParams} from 'ionic-angular';
-
+import {LazyLoadImageDirective} from 'ng2-lazyload-image';
+import {Observable} from 'rxjs/Observable';
+import 'rxjs/Rx';
 
 @Page({
-    templateUrl: 'build/pages/dashboard/dashboard.html'
+    templateUrl: 'build/pages/dashboard/dashboard.html',
+    directives:[LazyLoadImageDirective]
 })
 export class Dashboard {
 
