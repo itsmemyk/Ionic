@@ -1,11 +1,11 @@
 import {Page, Nav, Platform} from 'ionic-angular';
 import {SpinnerDialog} from 'ionic-native';
-import {Dashboard} from './../feedback/feedback';
+import {} from './../dashboard/dashboard';
 
 @Page({
     templateUrl: 'build/pages/feedback/feedback.html'
 })
-export class LoginPage {
+export class FeedbackPage {
     static get parameters() {
         return [[Nav], [Platform]];
     }
@@ -30,6 +30,6 @@ export class LoginPage {
         setTimeout(() => {
             SpinnerDialog.hide();
             this.nav.push(Dashboard);
-        }, 500);
+        }, 2000);
     }
 }

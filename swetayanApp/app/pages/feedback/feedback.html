@@ -1,8 +1,8 @@
 <ion-navbar *navbar hideBackButton dark>
-  <button menuToggle class="show">
-    <ion-icon name='menu'></ion-icon>
-  </button>
-  <ion-title class="center">Feedback</ion-title>
+    <button menuToggle class="show">
+        <ion-icon name='menu'></ion-icon>
+    </button>
+    <ion-title class="center">Feedback</ion-title>
 </ion-navbar>
 
 <ion-content padding class="page feedback" [ngClass]="{fixedScoll:!scroll}">
@@ -20,9 +20,8 @@
                 <ion-label floating>Message</ion-label>
                 <ion-textarea></ion-textarea>
             </ion-item>
-            <br/>                            
-            <button block swetayan (click)="send()">Submit</button>            
-        </ion-list>        
-    </form>   
-  </div>
+            <br/>
+            <button block swetayan (click)="send()">Submit</button>
+        </ion-list>
+    </form>
 </ion-content>

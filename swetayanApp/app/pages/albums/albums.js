@@ -31,6 +31,7 @@ export class Albums {
             };
 
             this.items.push(item);
+            this.items.push(item);
             infiniteScroll.complete();
         }, 500);
     }

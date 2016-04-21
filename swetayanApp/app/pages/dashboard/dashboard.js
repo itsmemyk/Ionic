@@ -23,12 +23,7 @@ export class Dashboard {
             {
                 title: "Welcome to Swetayan",
                 description: "It is much like an artist’s studio, but providing space to take, develop, print and duplicate photographs",
-                image: "http://swetayan.com/Admin/media/slider/img_1455623876_5462.jpg",
-            },
-            {
-                title: "Welcome to Swetayan",
-                description: "It is much like an artist’s studio, but providing space to take, develop, print and duplicate photographs",
-                image: "http://swetayan.com/Admin/media/slider/img_1455623876_5462.jpg",
+                image: "http://swetayan.com/Admin/media/slider/img_1455623876_5486.jpg",
             }
         ];
     }
