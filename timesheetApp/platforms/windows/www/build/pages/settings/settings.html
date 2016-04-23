@@ -1,0 +1,35 @@
+<ion-navbar *navbar darkGrey >
+  <ion-title>Settings</ion-title>
+</ion-navbar>
+
+<ion-content padding class="settings">
+    <form >
+        <ion-list no-lines>
+            <ion-item>
+                <ion-label fixed> URL</ion-label>
+                <ion-input [(ngModel)]="settings.url" type="url"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label fixed> Login</ion-label>
+                <ion-input [(ngModel)]='settings.username' type="text"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label fixed> Password</ion-label>
+                <ion-input [(ngModel)]='settings.password' type="password"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label fixed>Week Start</ion-label>
+                <ion-select [(ngModel)]="settings.weekStart">
+                    <ion-option value="sunday">Sunday</ion-option>
+                    <ion-option value="monday">Monday</ion-option>
+                </ion-select>
+            </ion-item>
+            <br/>
+            <ion-row>
+                <ion-col offset-5 m-l-10>
+                    <button green block padding f-s-15 (click)="saveSettings()">Save</button>
+                </ion-col>
+            </ion-row>
+        </ion-list>
+    </form>
+</ion-content>

@@ -22,26 +22,59 @@ export class MyApp {
 
   constructor(app, platform, authService) {
     this.app = app;    
-    this.rootPage = LoginPage;
+    this.authService = authService;
+    
+    this.rootPage = LoginPage;      
     
     this.pages = [
       {title:'Dashboard', component: Dashboard, index: 0,  icon: 'happy', isActive:true},
-      {title:'Albums', component: Albums, index: 1,  icon: 'camera', isActive:false},
+      {title:'My Albums', component: Albums, index: 1,  icon: 'camera', isActive:false},
       {title:'Products', component: Albums, index: 2,  icon: 'cart', isActive:false},
       {title:'Videos', component: Albums, index: 3,  icon: 'videocam', isActive:false},
       {title:'Feedback', component: FeedbackPage, index: 4,  icon: 'send', isActive:false},
       {title:'Map', index: 5,  icon: 'map', isActive:false},
-      {title:'Logout', component: LoginPage, index: 6,  icon: 'log-out', isActive:false}  
-    ];
+      {title:'Logout', index: 6,  icon: 'log-out', isActive:false}  
+    ];      
     
     platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
-      StatusBar.styleDefault();
+      StatusBar.styleDefault();     
+      
+      document.addEventListener('backbutton', () => {
+        var nav = app.getComponent('nav');
+
+        if (nav.canGoBack()) {
+          nav.pop();
+        }
+        else {
+           let confirm = Alert.create({
+            title: 'Swetayan App',
+            message: 'Do you really want to close It?',
+            buttons: [
+              {
+                text: 'No',
+                handler: () => {
+
+                }
+              },
+              {
+                text: 'Yes',
+                handler: () => {
+                  navigator.app.exitApp()
+                }
+              }
+            ]
+          });
+          nav.present(confirm);
+        }
+      });
       
       authService.init().then(() => {
           if(authService.auth == true) {
-              this.rootPage = Dashboard;
+              this.rootPage = Dashboard; 
+              console.log("auth",authService.authObject);
+              console.log("auth",authService.authObject.cid);                                                  
           }
           else {
               console.log("please do login first");
@@ -74,6 +107,9 @@ export class MyApp {
                         success => console.log("Launched navigator"),
                         error => console.log("Error launching navigator", error)
                     );
+            } else if ( page.title == "Logout" ) {
+                this.authService.clear();
+                nav.push(LoginPage);
             }
         }        
     }    

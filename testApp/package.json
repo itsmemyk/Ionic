@@ -23,6 +23,8 @@
   },
   "name": "testapp",
   "description": "testApp: An Ionic project",
-  "cordovaPlugins": [],
+  "cordovaPlugins": [
+    "de.appplant.cordova.plugin.local-notification"
+  ],
   "cordovaPlatforms": []
 }

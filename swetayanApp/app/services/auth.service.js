@@ -12,11 +12,8 @@ export class AuthService {
         this.localStore = localStore;
         this.localStore.name = "user.auth";
 
-        this.username = '';
-        this.password = '';
         this.user = {};
-        this.auth = false;
-                      
+        this.auth = false;                      
     }
 
     init() {
@@ -24,9 +21,7 @@ export class AuthService {
            this.localStore.get().then((res) => {
                 let userInfo = JSON.parse(res);
                 
-                if (userInfo != null) {                                
-                    this.username = userInfo.username;
-                    this.password = userInfo.password;
+                if (userInfo != null) {               
                     this.user = userInfo.user;
                     this.auth = true;
                 }
@@ -37,8 +32,6 @@ export class AuthService {
     
     get authObject() {
         return {
-            username: this.username,
-            password: this.password,
             user: this.user,
             auth: this.auth
         };

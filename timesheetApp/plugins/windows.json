@@ -1,0 +1,33 @@
+{
+    "prepare_queue": {
+        "installed": [],
+        "uninstalled": []
+    },
+    "config_munge": {
+        "files": {}
+    },
+    "installed_plugins": {
+        "cordova-plugin-console": {
+            "PACKAGE_NAME": "timesheetApp"
+        },
+        "cordova-plugin-device": {
+            "PACKAGE_NAME": "timesheetApp"
+        },
+        "cordova-plugin-splashscreen": {
+            "PACKAGE_NAME": "timesheetApp"
+        },
+        "cordova-plugin-statusbar": {
+            "PACKAGE_NAME": "timesheetApp"
+        },
+        "cordova-plugin-whitelist": {
+            "PACKAGE_NAME": "timesheetApp"
+        },
+        "cordova-sqlite-storage": {
+            "PACKAGE_NAME": "timesheetApp"
+        },
+        "ionic-plugin-keyboard": {
+            "PACKAGE_NAME": "timesheetApp"
+        }
+    },
+    "dependent_plugins": {}
+}

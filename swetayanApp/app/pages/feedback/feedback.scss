@@ -1,9 +1,33 @@
 .feedback.page {
-    .item-inner {
-        border-bottom: 2px solid #424242 !important;
+    background: #EEEEEE;
+    
+    ion-item {
+        background: transparent;
+        
+        .item-inner {
+            border-bottom: 2px solid #424242 !important;
+        }
+        
+        ion-label {
+            color: #424242;
+        }
+        
+        &.input-has-value , &.input-has-focus {
+            .item-inner {
+                border-bottom: 2px solid map-get($colors, purple2) !important;
+            }
+            
+            ion-label {
+                color: map-get($colors, purple2);
+            }
+        }
     }
-    ion-label {
-        color: #424242;
+    
+    button {
+        margin: 1rem;
+        width: 98%;
+        font-size: 1.5rem;
+        height: 4rem;
     }
     
 }

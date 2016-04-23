@@ -1,19 +1,19 @@
 <ion-content padding class="page login" [ngClass]="{fixedScoll:!scroll}">
   <div class="login-wrapper">
     <img class="logo" src="img/logo.png" />        
-    <form>
+    <form (submit)="login()" [ngFormModel]="userForm">
         <ion-list no-lines>
             <ion-item>
-                <ion-label floating>Email</ion-label>
-                <ion-input type="text"></ion-input>
+                <ion-label floating>Username</ion-label>
+                <ion-input type="text" ngControl="username"></ion-input>
             </ion-item>
             <ion-item>
                 <ion-label floating>Password</ion-label>
-                <ion-input type="password"></ion-input>
+                <ion-input type="password" ngControl="password"></ion-input>
             </ion-item>
             <br/>                            
             <div class="btn-block">
-                <button block swetayan (click)="login()">Login</button>
+                <button block swetayan [disabled]="!userForm.valid">Login</button>
             </div>            
         </ion-list>        
     </form> 

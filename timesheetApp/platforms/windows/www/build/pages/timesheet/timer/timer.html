@@ -1,0 +1,15 @@
+<ion-navbar *navbar darkGrey>
+  <ion-title> Timesheet Timer</ion-title>
+</ion-navbar>
+
+<ion-content padding class="timesheet-timer">    
+     
+     <h1>{{stamp|date:'H:m:s'}}</h1>
+     
+     <div class="play-wrapper" [ngClass]="{end:status,start:!status}">
+        <ion-icon class="timer-icon" name="play" *ngIf="!status" (click)="startTask()"></ion-icon>
+        <div class="stop-icon" *ngIf="status" (click)="stopTask()" >
+                
+        </div> 
+     </div>
+</ion-content>
