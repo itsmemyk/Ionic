@@ -29,6 +29,9 @@
     <feature name="LaunchNavigator">
         <param name="android-package" value="uk.co.workingedge.phonegap.plugin.LaunchNavigator" />
     </feature>
+    <feature name="SocialSharing">
+        <param name="android-package" value="nl.xservices.plugins.SocialSharing" />
+    </feature>
     <allow-intent href="market:*" />
     <name>Swetayan</name>
     <description>An Ionic Framework and Cordova project.</description>

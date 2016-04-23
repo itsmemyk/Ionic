@@ -30,11 +30,13 @@
         },
         "uk.co.workingedge.phonegap.plugin.launchnavigator": {
             "PACKAGE_NAME": "com.ionicframework.swetayanapp237283"
-        }
-    },
-    "dependent_plugins": {
+        },
+        "cordova-plugin-x-socialsharing": {
+            "PACKAGE_NAME": "com.ionicframework.swetayanapp237283"
+        },
         "cordova-plugin-actionsheet": {
             "PACKAGE_NAME": "com.ionicframework.swetayanapp237283"
         }
-    }
+    },
+    "dependent_plugins": {}
 }

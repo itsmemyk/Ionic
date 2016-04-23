@@ -61,6 +61,13 @@ module.exports = [
         "merges": [
             "launchnavigator"
         ]
+    },
+    {
+        "file": "plugins/cordova-plugin-x-socialsharing/www/SocialSharing.js",
+        "id": "cordova-plugin-x-socialsharing.SocialSharing",
+        "clobbers": [
+            "window.plugins.socialsharing"
+        ]
     }
 ];
 module.exports.metadata = 
@@ -74,7 +81,8 @@ module.exports.metadata =
     "ionic-plugin-keyboard": "2.0.1",
     "cordova-plugin-spinner-dialog": "1.3.1",
     "cordova-plugin-actionsheet": "2.2.2",
-    "uk.co.workingedge.phonegap.plugin.launchnavigator": "3.0.3"
+    "uk.co.workingedge.phonegap.plugin.launchnavigator": "3.0.3",
+    "cordova-plugin-x-socialsharing": "5.0.12"
 };
 // BOTTOM OF METADATA
 });

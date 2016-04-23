@@ -21,6 +21,9 @@
                 color: map-get($colors, purple2);
             }
         }
+        textarea {
+            height: 100px;
+        }
     }
     
     button {

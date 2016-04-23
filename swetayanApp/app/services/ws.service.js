@@ -18,7 +18,7 @@ export class WSService {
         return this.http.get(url);
     }
     
-    post(url, data) {
+    post(url, data) {        
         return this.http.post(url, JSON.stringify(data));
     }
     
@@ -38,12 +38,16 @@ export class WSService {
         return this.post(BASE_URL+"get.php?q=products",data);
     }
     
+    getGallery(data) {
+        return this.post(BASE_URL+"get.php?q=gallery",data);
+    }
+    
     getVideos(data) {
         return this.post(BASE_URL+"get.php?q=videos",data);
     }
     
     getSliders(data) {
-        return this.post(BASE_URL+"get.php?q=sliders",data);
+        return this.post(BASE_URL+"get.php?q=slider",data);
     }
     
     changePassword(data) {
@@ -51,7 +55,7 @@ export class WSService {
     }
     
     sendFeedback(data) {
-        return this.post(BASE_URL+"post.php?q=feedback",data);
+        return this.get(`${BASE_URL}post.php?q=testimonials&customerId=${data.customerId}&message=${data.message}`);
     }
 }
 

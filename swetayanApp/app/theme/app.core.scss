@@ -13,9 +13,82 @@
 
 @import "../pages/dashboard/dashboard";
 
-@import "../pages/albums/albums";
-
 @import "../pages/feedback/feedback";
+
+.albums {
+    ion-row {
+        background: #eee;
+    }
+}
+
+.gallery {
+    background: #eee;
+}
+
+.viewer {
+    background: #eee;
+    
+    .img-item-container {        
+        margin-top: 2rem;
+        column-count: 2;
+        column-gap: 0.5rem;
+        
+        .img-item {
+           display: inline-block;
+            background: #fff;
+            padding: 1em;
+            margin: 0 0 1rem;
+            width: 100%;
+            box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            -webkit-box-sizing: border-box;
+            box-shadow: 2px 2px 4px 0 #ccc;
+        }            
+    }    
+}
+
+.products {
+    background: #eee;
+    
+    .product-container {
+        margin-top: 1rem;
+                 
+        .product-wrapper {
+            position: relative;
+            margin-bottom: 1rem;
+            
+            img {
+                width: 100%;    
+            }
+            
+            .product-caption {
+                position: absolute;
+                bottom: 0;
+                width: 100%;
+                background: rgba(0,0,0,0.78);
+                
+                .total , .title {
+                    color:#fff;
+                    margin: 8px 16px;
+                }
+                .total {
+                    font-size: 1.5rem;
+                }
+                .title {
+                    font-size: 2.5rem;
+                }
+            }
+            
+            .product-share {
+                position: absolute;
+                bottom: 1.6rem;
+                right: 2rem;
+                font-size: 3rem;
+                color: #fff;
+            }
+        }
+    }   
+}
 
 .fixedScoll scroll-content {
   padding: 16px !important;

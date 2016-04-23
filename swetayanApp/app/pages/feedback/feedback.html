@@ -9,16 +9,8 @@
     <form>
         <ion-list no-lines>
             <ion-item>
-                <ion-label floating>Name</ion-label>
-                <ion-input type="text"></ion-input>
-            </ion-item>
-            <ion-item>
-                <ion-label floating>Mobile</ion-label>
-                <ion-input type="text"></ion-input>
-            </ion-item>
-            <ion-item>
                 <ion-label floating>Message</ion-label>
-                <ion-textarea></ion-textarea>
+                <ion-textarea [(ngModel)]="message"></ion-textarea>
             </ion-item>
             <br/>
             <button block dark (click)="send()">Submit</button>

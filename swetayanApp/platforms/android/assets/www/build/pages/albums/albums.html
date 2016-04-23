@@ -13,27 +13,15 @@
 
         <ion-card-content>
             <h2 class="card-title">
-        {{album.title}}
-      </h2>
+                 {{album.title}}
+            </h2>
             <p [innerHtml]="album.description">
             </p>
         </ion-card-content>
 
         <ion-row no-padding>
-            <ion-col>
-                <button clear small>
-                    <ion-icon name='star'></ion-icon>
-                    View
-                </button>
-            </ion-col>
-            <ion-col text-center>
-                <button clear small >
-                    <ion-icon name='send'></ion-icon>
-                    Comment
-                </button>
-            </ion-col>
             <ion-col text-right>
-                <button clear small>
+                <button dark small>
                     <ion-icon name='share-alt'></ion-icon>
                     Share
                 </button>

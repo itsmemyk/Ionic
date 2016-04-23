@@ -19712,9 +19712,6 @@ body {
     .dashboard p b {
       color: #000000; }
 
-.albums ion-row {
-  background: #eee; }
-
 .feedback.page {
   background: #EEEEEE; }
   .feedback.page ion-item {
@@ -19727,11 +19724,68 @@ body {
       border-bottom: 2px solid #00BCD4 !important; }
     .feedback.page ion-item.input-has-value ion-label, .feedback.page ion-item.input-has-focus ion-label {
       color: #00BCD4; }
+    .feedback.page ion-item textarea {
+      height: 100px; }
   .feedback.page button {
     margin: 1rem;
     width: 98%;
     font-size: 1.5rem;
     height: 4rem; }
+
+.albums ion-row {
+  background: #eee; }
+
+.gallery {
+  background: #eee; }
+
+.viewer {
+  background: #eee; }
+  .viewer .img-item-container {
+    margin-top: 2rem;
+    -webkit-column-count: 2;
+    -moz-column-count: 2;
+    column-count: 2;
+    -webkit-column-gap: 0.5rem;
+    -moz-column-gap: 0.5rem;
+    column-gap: 0.5rem; }
+    .viewer .img-item-container .img-item {
+      display: inline-block;
+      background: #fff;
+      padding: 1em;
+      margin: 0 0 1rem;
+      width: 100%;
+      box-sizing: border-box;
+      -moz-box-sizing: border-box;
+      -webkit-box-sizing: border-box;
+      box-shadow: 2px 2px 4px 0 #ccc; }
+
+.products {
+  background: #eee; }
+  .products .product-container {
+    margin-top: 1rem; }
+    .products .product-container .product-wrapper {
+      position: relative;
+      margin-bottom: 1rem; }
+      .products .product-container .product-wrapper img {
+        width: 100%; }
+      .products .product-container .product-wrapper .product-caption {
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        background: rgba(0, 0, 0, 0.78); }
+        .products .product-container .product-wrapper .product-caption .total, .products .product-container .product-wrapper .product-caption .title {
+          color: #fff;
+          margin: 8px 16px; }
+        .products .product-container .product-wrapper .product-caption .total {
+          font-size: 1.5rem; }
+        .products .product-container .product-wrapper .product-caption .title {
+          font-size: 2.5rem; }
+      .products .product-container .product-wrapper .product-share {
+        position: absolute;
+        bottom: 1.6rem;
+        right: 2rem;
+        font-size: 3rem;
+        color: #fff; }
 
 .fixedScoll scroll-content {
   padding: 16px !important;

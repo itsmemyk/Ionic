@@ -4,6 +4,8 @@ import {StatusBar} from 'ionic-native';
 import {LoginPage} from './pages/login/login';
 import {Dashboard} from './pages/dashboard/dashboard';
 import {Albums} from './pages/albums/albums';
+import {Gallery} from './pages/gallery/gallery';
+import {Products} from './pages/products/products';
 import {FeedbackPage} from './pages/feedback/feedback';
 
 import {LaunchNavigator} from 'ionic-native';
@@ -28,13 +30,23 @@ export class MyApp {
     
     this.pages = [
       {title:'Dashboard', component: Dashboard, index: 0,  icon: 'happy', isActive:true},
-      {title:'My Albums', component: Albums, index: 1,  icon: 'camera', isActive:false},
-      {title:'Products', component: Albums, index: 2,  icon: 'cart', isActive:false},
+      {title:'Albums', component: Albums, index: 12,  icon: 'easel', isActive:false},
+      {title:'Gallery', component: Gallery, index: 1,  icon: 'camera', isActive:false},
+      {title:'Products', component: Products, index: 2,  icon: 'cart', isActive:false},
       {title:'Videos', component: Albums, index: 3,  icon: 'videocam', isActive:false},
       {title:'Feedback', component: FeedbackPage, index: 4,  icon: 'send', isActive:false},
       {title:'Map', index: 5,  icon: 'map', isActive:false},
       {title:'Logout', index: 6,  icon: 'log-out', isActive:false}  
     ];      
+    
+    authService.init().then(() => {
+        if(authService.auth == true) {
+            this.rootPage = Dashboard;                                                               
+        }
+        else {
+            console.log("please do login first");
+        }
+    })
     
     platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
@@ -70,16 +82,7 @@ export class MyApp {
         }
       });
       
-      authService.init().then(() => {
-          if(authService.auth == true) {
-              this.rootPage = Dashboard; 
-              console.log("auth",authService.authObject);
-              console.log("auth",authService.authObject.cid);                                                  
-          }
-          else {
-              console.log("please do login first");
-          }
-      })
+     
     }); 
   } 
   
@@ -95,7 +98,7 @@ export class MyApp {
         });
         
         page.isActive = true;    
-        console.log(page);
+        // console.log(page);
         if(page.component) {
             nav.push(page.component, {tabIndex: page.index});   
         }

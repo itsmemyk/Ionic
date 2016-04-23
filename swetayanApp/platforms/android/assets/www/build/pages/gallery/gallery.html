@@ -1,0 +1,21 @@
+<ion-navbar *navbar hideBackButton darkGrey>
+    <button menuToggle class="show">
+        <ion-icon name='menu'></ion-icon>
+    </button>
+    <ion-title class="center">Our Gallery</ion-title>
+</ion-navbar>
+
+<ion-content class="gallery">    
+    <ion-card #gallery *ngFor="#record of gallery">
+        <ion-card-header>
+            {{record.title}}
+        </ion-card-header>
+        <ion-card-content>
+            <ion-slides pager="true" [options]="sliderOptions">
+                <ion-slide *ngFor="#slide of record.images" >      
+                    <img [src]="slide.image" offset="100" class="slide-image"/>               
+                </ion-slide>
+            </ion-slides>        
+        </ion-card-content>
+    </ion-card>
+</ion-content>

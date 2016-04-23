@@ -1,0 +1,26 @@
+<ion-navbar *navbar hideBackButton darkGrey>
+    <button menuToggle class="show">
+        <ion-icon name='menu'></ion-icon>
+    </button>
+    <ion-title class="center">Our Products</ion-title>
+</ion-navbar>
+
+<ion-content class="products">
+    <div class="product-container">
+        <div class="product-wrapper" *ngFor="#product of products" (click)="view(product)">
+             <img [src]="'img/loading.gif'" [lazyLoad]="product.images[0].image" offset="100" />
+             
+             <div class="product-caption">
+                <p class="title">{{product.title}}</p>
+                <p class="total">{{product.images.length}}</p>   
+             </div>
+             <div class="product-share" (click)="doShare(product)">
+                <ion-icon name='share'></ion-icon>
+             </div>        
+        </div>
+    </div>
+
+    <ion-infinite-scroll (infinite)="doInfinite($event)">
+        <ion-infinite-scroll-content></ion-infinite-scroll-content>
+    </ion-infinite-scroll>
+</ion-content>

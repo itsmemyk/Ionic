@@ -45,7 +45,8 @@ export class LoginPage {
             .map(res => res.json())
             .subscribe((result) => {
                 SpinnerDialog.hide();                                
-
+                
+                console.log("res",result);
                 if (result.success == 1) {                    
                     this.auth.save({user:result.data});
                     this.nav.push(Dashboard);
