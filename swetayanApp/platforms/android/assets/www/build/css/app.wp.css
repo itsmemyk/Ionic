@@ -19508,14 +19508,8 @@ body {
     column-gap: 0.5rem; }
     .viewer .img-item-container .img-item {
       display: inline-block;
-      background: #fff;
-      padding: 1em;
-      margin: 0 0 1rem;
-      width: 100%;
-      box-sizing: border-box;
-      -moz-box-sizing: border-box;
-      -webkit-box-sizing: border-box;
-      box-shadow: 2px 2px 4px 0 #ccc; }
+      margin: 0 0 0.5rem;
+      width: 100%; }
 
 .products {
   background: #eee; }
@@ -19542,6 +19536,12 @@ body {
         position: absolute;
         bottom: 1.6rem;
         right: 2rem;
+        font-size: 3rem;
+        color: #fff; }
+      .products .product-container .product-wrapper .product-view {
+        position: absolute;
+        bottom: 1.6rem;
+        right: 6rem;
         font-size: 3rem;
         color: #fff; }
 
@@ -19696,7 +19696,7 @@ body {
 .show {
   display: block !important;
   position: absolute;
-  top: 1.2rem; }
+  top: 1rem; }
 
 .hide {
   display: none; }
@@ -19832,3 +19832,6 @@ ion-menu {
 
 .error-msg {
   color: #B71C1C; }
+
+.bar-button-default * {
+  color: #fff !important; }
